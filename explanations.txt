@@ -1,1 +1,1 @@
-This repostory contains solutions for the problems included in SoftUni courses.
+This repostory contains original solutions for the problems included in SoftUni courses.
