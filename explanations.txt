@@ -1,1 +1,0 @@
-This repostory contains solutions for the problems included in SoftUni courses.
