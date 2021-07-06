@@ -1,0 +1,42 @@
+Computer with id 1 added successfully.
+Component CentralProcessingUnit with id 1 added successfully in computer with id 1.
+Component Motherboard with id 4 added successfully in computer with id 1.
+Component VideoCard with id 16 added successfully in computer with id 1.
+Peripheral Monitor with id 2 added successfully in computer with id 1.
+Computer with id 4 added successfully.
+Component CentralProcessingUnit with id 3 added successfully in computer with id 4.
+Component Motherboard with id 6 added successfully in computer with id 4.
+Component VideoCard with id 17 added successfully in computer with id 4.
+Peripheral Headset with id 3 added successfully in computer with id 4.
+Computer with id 2 added successfully.
+Component PowerSupply with id 9 added successfully in computer with id 2.
+Component SolidStateDrive with id 14 added successfully in computer with id 2.
+Peripheral Monitor with id 5 added successfully in computer with id 2.
+Overall Performance: 116.17. Price: 8700.00 - DesktopComputer: Asus Huracan (Id: 1)
+ Components (3):
+  Overall Performance: 100.00. Price: 1700.00 - CentralProcessingUnit: Ryzen 3950 (Id: 1) Generation: 10
+  Overall Performance: 100.00. Price: 1700.00 - Motherboard: MSI MEG (Id: 4) Generation: 7
+  Overall Performance: 103.50. Price: 4000.00 - VideoCard: Nvidia Quadro (Id: 16) Generation: 6
+ Peripherals (1); Average Overall Performance (60.00):
+  Overall Performance: 60.00. Price: 800.00 - Monitor: Dell S27 (Id: 2) Connection Type: HDMI
+Overall Performance: 110.52. Price: 5850.00 - Laptop: Asus ROG (Id: 4)
+ Components (3):
+  Overall Performance: 102.50. Price: 1600.00 - CentralProcessingUnit: Intel Xeon (Id: 3) Generation: 11
+  Overall Performance: 87.50. Price: 1250.00 - Motherboard: Asus ROG (Id: 6) Generation: 7
+  Overall Performance: 111.55. Price: 2000.00 - VideoCard: Nvidia GeForce (Id: 17) Generation: 8
+ Peripherals (1); Average Overall Performance (70.00):
+  Overall Performance: 70.00. Price: 300.00 - Headset: Razer Thresher (Id: 3) Connection Type: Bluetooth
+Overall Performance: 87.00. Price: 2290.00 - DesktopComputer: Acer GX (Id: 2)
+ Components (2):
+  Overall Performance: 42.00. Price: 200.00 - PowerSupply: Corsair Hydro (Id: 9) Generation: 8
+  Overall Performance: 102.00. Price: 800.00 - SolidStateDrive: Samsung Evo (Id: 14) Generation: 8
+ Peripherals (1); Average Overall Performance (60.00):
+  Overall Performance: 60.00. Price: 800.00 - Monitor: Dell S27 (Id: 5) Connection Type: HDMI
+Overall Performance: 110.52. Price: 5850.00 - Laptop: Asus ROG (Id: 4)
+ Components (3):
+  Overall Performance: 102.50. Price: 1600.00 - CentralProcessingUnit: Intel Xeon (Id: 3) Generation: 11
+  Overall Performance: 87.50. Price: 1250.00 - Motherboard: Asus ROG (Id: 6) Generation: 7
+  Overall Performance: 111.55. Price: 2000.00 - VideoCard: Nvidia GeForce (Id: 17) Generation: 8
+ Peripherals (1); Average Overall Performance (70.00):
+  Overall Performance: 70.00. Price: 300.00 - Headset: Razer Thresher (Id: 3) Connection Type: Bluetooth
+Computer with this id does not exist.
