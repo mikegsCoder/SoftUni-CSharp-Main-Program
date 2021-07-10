@@ -1,2 +1,2 @@
 # SoftUni
-Solutions to problems from SoftUni courses
+Solutions for problems from SoftUni sowtfare engineering program
