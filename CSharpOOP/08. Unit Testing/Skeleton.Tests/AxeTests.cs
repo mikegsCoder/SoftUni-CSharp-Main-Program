@@ -27,7 +27,6 @@ public class AxeTests
     [Test]
     public void When_AxeAttackAndDurabilityProvided_ShouldBeSetCorrectly()
     {
-
         Assert.AreEqual(attack, axe.AttackPoints);
         Assert.AreEqual(durability, axe.DurabilityPoints);
     }
