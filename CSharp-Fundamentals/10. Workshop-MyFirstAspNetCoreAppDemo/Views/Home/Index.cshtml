@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome, SoftUni!</h1>
+    <p>Learn about <a href="https://softuni.bg">SoftUni</a>.</p>
+    <p>@DateTime.Now</p>
+</div>
+<form>
+    Enter some text:
+    <input />
+</form>
+<table class="table table-bordered">
+    @for (int i = 1; i <= 10; i++)
+    {
+        if (i % 2 == 0)
+        {
+            <tr>
+                <td> @i </td>
+                <td> @(i*i) </td>
+                <td> @Math.Sqrt(i) </td>
+                <td> @Math.Pow(i, 3) </td>
+            </tr>
+        }
+    }
+</table>
