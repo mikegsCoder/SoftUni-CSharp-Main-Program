@@ -46,5 +46,20 @@ namespace BasicWebServer.Server
 
             return requestBuilder.ToString();
         }
+
+        private void WriteResponse(NetworkStream networkStream, string message)
+        {
+            var contentLength = Encoding.UTF8.GetByteCount(message);
+
+            var response = $@"HTTP/1.1 200 OK
+Content-Type: text/plain; charset=UTF-8
+Content-Length: {contentLength}
+
+{message}";
+
+            var resposeBytes = Encoding.UTF8.GetBytes(response);
+
+            networkStream.Write(resposeBytes);
+        }
     }
 }
