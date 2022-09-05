@@ -19,6 +19,29 @@ namespace BasicWebServer.Server
             this.serverListener = new TcpListener(this.ipAddress, port);
         }
 
+        public void Start()
+        {
+            this.serverListener.Start();
+
+            Console.WriteLine($"Server started on port {port}.");
+            Console.WriteLine("Listening for requests...");
+
+            while (true)
+            {
+                var connection = serverListener.AcceptTcpClient();
+
+                var networkStream = connection.GetStream();
+
+                var requestText = this.ReadRequest(networkStream);
+
+                Console.WriteLine(requestText);
+
+                WriteResponse(networkStream, "Hello from the server!");
+
+                connection.Close();
+            }
+        }
+
         private string ReadRequest(NetworkStream networkStream)
         {
             var bufferLength = 1024;
