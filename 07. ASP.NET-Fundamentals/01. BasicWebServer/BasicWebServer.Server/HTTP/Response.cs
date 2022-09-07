@@ -8,8 +8,8 @@ namespace BasicWebServer.Server.HTTP
         {
             this.StatusCode = statusCode;
 
-            this.Headers.Add("Server", "My Web Server");
-            this.Headers.Add("Date", $"{DateTime.UtcNow:r}");
+            this.Headers.Add(Header.Server, "My Web Server");
+            this.Headers.Add(Header.Date, $"{DateTime.UtcNow:r}");
         }
 
         public StatusCode StatusCode { get; init; }
