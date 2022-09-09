@@ -1,4 +1,8 @@
-﻿using BasicWebServer.Server;
+﻿using System;
+using System.Linq;
+using System.Text;
+using BasicWebServer.Server;
+using BasicWebServer.Server.HTTP;
 using BasicWebServer.Server.Responses;
 
 namespace BasicWebServer.Demo
@@ -12,11 +16,22 @@ namespace BasicWebServer.Demo
         </form>";
 
         public static void Main()
-         => new HttpServer(routes => routes
+           => new HttpServer(routes => routes
                .MapGet("/", new TextResponse("Hello from the server!"))
                .MapGet("/Redirect", new RedirectResponse("https://softuni.org/"))
                .MapGet("/HTML", new HtmlResponse(Startup.HtmlForm))
+               .MapPost("/HTML", new TextResponse("", Startup.AddFormDataAction)))
            .Start();
 
+        private static void AddFormDataAction(Request request, Response response)
+        {
+            response.Body = "";
+
+            foreach (var (key, value) in request.Form)
+            {
+                response.Body += $"{key} - {value}";
+                response.Body += Environment.NewLine;
+            }
+        }
     }
 }
