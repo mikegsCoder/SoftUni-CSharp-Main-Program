@@ -35,7 +35,8 @@ namespace BasicWebServer.Demo
                .MapGet("/Redirect", new RedirectResponse("https://softuni.org/"))
                .MapGet("/HTML", new HtmlResponse(Startup.HtmlForm))
                .MapPost("/HTML", new TextResponse("", Startup.AddFormDataAction))
-               .MapGet("/Content", new HtmlResponse(Startup.DownloadForm)));
+               .MapGet("/Content", new HtmlResponse(Startup.DownloadForm))
+               .MapPost("/Content", new TextFileResponse(Startup.FileName)));
 
             await server.Start();
         }
