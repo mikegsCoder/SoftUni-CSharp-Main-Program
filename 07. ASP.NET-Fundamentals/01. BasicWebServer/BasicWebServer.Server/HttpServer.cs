@@ -4,6 +4,7 @@ using System.Text;
 using System.Net.Sockets;
 using BasicWebServer.Server.HTTP;
 using BasicWebServer.Server.Routing;
+using System.Threading.Tasks;
 
 namespace BasicWebServer.Server
 {
@@ -35,7 +36,7 @@ namespace BasicWebServer.Server
         {
         }
 
-        public void Start()
+        public async Task Start()
         {
             this.serverListener.Start();
 
@@ -44,29 +45,32 @@ namespace BasicWebServer.Server
 
             while (true)
             {
-                var connection = serverListener.AcceptTcpClient();
+                var connection = await serverListener.AcceptTcpClientAsync();
 
-                var networkStream = connection.GetStream();
+                _ = Task.Run(async () =>
+                {
+                    var networkStream = connection.GetStream();
 
-                var requestText = this.ReadRequest(networkStream);
+                    var requestText = await this.ReadRequest(networkStream);
 
-                Console.WriteLine(requestText);
+                    Console.WriteLine(requestText);
 
-                var request = Request.Parse(requestText);
+                    var request = Request.Parse(requestText);
 
-                var response = this.routingTable.MatchRequest(request);
+                    var response = this.routingTable.MatchRequest(request);
 
-                // Execute pre-render action for the response
-                if (response.PreRenderAction != null)
-                    response.PreRenderAction(request, response);
+                    // Execute pre-render action for the response
+                    if (response.PreRenderAction != null)
+                        response.PreRenderAction(request, response);
 
-                WriteResponse(networkStream, response);
+                    await WriteResponse(networkStream, response);
 
-                connection.Close();
+                    connection.Close();
+                });
             }
         }
 
-        private string ReadRequest(NetworkStream networkStream)
+        private async Task<string> ReadRequest(NetworkStream networkStream)
         {
             var bufferLength = 1024;
             var buffer = new byte[bufferLength];
@@ -77,7 +81,7 @@ namespace BasicWebServer.Server
 
             do
             {
-                var bytesRead = networkStream.Read(buffer, 0, bufferLength);
+                var bytesRead = await networkStream.ReadAsync(buffer, 0, bufferLength);
 
                 totalBytes += bytesRead;
 
@@ -88,17 +92,16 @@ namespace BasicWebServer.Server
 
                 requestBuilder.Append(Encoding.UTF8.GetString(buffer, 0, bytesRead));
             }
-
-            while (networkStream.DataAvailable);
+            while (networkStream.DataAvailable); // May not run correctly over the Internet
 
             return requestBuilder.ToString();
         }
 
-        private void WriteResponse(NetworkStream networkStream, Response response)
+        private async Task WriteResponse(NetworkStream networkStream, Response response)
         {
             var resposeBytes = Encoding.UTF8.GetBytes(response.ToString());
 
-            networkStream.Write(resposeBytes);
+            await networkStream.WriteAsync(resposeBytes);
         }
     }
 }
