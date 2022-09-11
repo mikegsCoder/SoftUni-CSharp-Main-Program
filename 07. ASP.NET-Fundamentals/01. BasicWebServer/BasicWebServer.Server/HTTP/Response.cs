@@ -17,6 +17,8 @@ namespace BasicWebServer.Server.HTTP
 
         public HeaderCollection Headers { get; } = new HeaderCollection();
 
+        public CookieCollection Cookies { get; } = new CookieCollection();
+
         public string Body { get; set; }
 
         public Action<Request, Response> PreRenderAction { get; protected set; }
@@ -30,6 +32,11 @@ namespace BasicWebServer.Server.HTTP
             foreach (var header in this.Headers)
             {
                 result.AppendLine(header.ToString());
+            }
+
+            foreach (var cookie in this.Cookies)
+            {
+                result.AppendLine($"{Header.SetCookie}: {cookie}");
             }
 
             result.AppendLine();
