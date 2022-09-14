@@ -17,16 +17,6 @@ namespace BasicWebServer.Demo
 {
     public class Startup
     {
-        private const string HtmlForm = @"<form action='/HTML' method='POST'>
-            Name: <input type='text' name='Name'/>
-            Age: <input type='number' name ='Age'/>
-            <input type='submit' value ='Save' />
-        </form>";
-
-        private const string DownloadForm = @"<form action='/Content' method='POST'>
-                <input type='submit' value ='Download Sites Content' /> 
-            </form>";
-
         private const string FileName = "content.txt";
 
         private const string LoginForm = @"<form action='/Login' method='POST'>
@@ -44,7 +34,8 @@ namespace BasicWebServer.Demo
                 .MapGet<HomeController>("/", c => c.Index())
                 .MapGet<HomeController>("/Redirect", c => c.Redirect())
                 .MapGet<HomeController>("/HTML", c => c.Html())
-                .MapPost<HomeController>("/HTML", c => c.HtmlFormPost()))
+                .MapPost<HomeController>("/HTML", c => c.HtmlFormPost())
+                .MapGet<HomeController>("/Content", c => c.Content()))
             .Start();
 
         private static void AddFormDataAction(Request request, Response response)

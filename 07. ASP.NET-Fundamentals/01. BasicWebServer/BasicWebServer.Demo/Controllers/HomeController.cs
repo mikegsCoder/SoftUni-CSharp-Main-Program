@@ -16,6 +16,10 @@ namespace BasicWebServer.Demo.Controllers
             <input type='submit' value ='Save' />
         </form>";
 
+        private const string DownloadForm = @"<form action='/Content' method='POST'>
+                <input type='submit' value ='Download Sites Content' /> 
+            </form>";
+
         public HomeController(Request request) : base(request)
         {
         }
@@ -38,5 +42,7 @@ namespace BasicWebServer.Demo.Controllers
 
             return Text(formData);
         }
+
+        public Response Content() => Html(HomeController.DownloadForm);
     }
 }
