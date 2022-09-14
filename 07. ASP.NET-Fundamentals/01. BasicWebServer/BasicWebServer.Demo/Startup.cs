@@ -17,8 +17,6 @@ namespace BasicWebServer.Demo
 {
     public class Startup
     {
-        private const string FileName = "content.txt";
-
         private const string LoginForm = @"<form action='/Login' method='POST'>
                 Username: <input type='text' name='Username'/>
                 Password: <input type='text' name='Password'/>
@@ -35,7 +33,8 @@ namespace BasicWebServer.Demo
                 .MapGet<HomeController>("/Redirect", c => c.Redirect())
                 .MapGet<HomeController>("/HTML", c => c.Html())
                 .MapPost<HomeController>("/HTML", c => c.HtmlFormPost())
-                .MapGet<HomeController>("/Content", c => c.Content()))
+                .MapGet<HomeController>("/Content", c => c.Content())
+                .MapPost<HomeController>("/Content", c => c.DownloadContent()))
             .Start();
 
         private static void AddFormDataAction(Request request, Response response)
@@ -49,36 +48,7 @@ namespace BasicWebServer.Demo
             }
         }
 
-        private static async Task DownloadSitesAsTextFile(string fileName, string[] urls)
-        {
-            var downloads = new List<Task<string>>();
 
-            foreach (var url in urls)
-            {
-                downloads.Add(DownloadWebSiteContent(url));
-            }
-
-            var responses = await Task.WhenAll(downloads);
-
-            var responsesString = string.Join(
-                Environment.NewLine + new String('-', 100),
-                responses);
-
-            await File.WriteAllTextAsync(fileName, responsesString);
-        }
-
-        private static async Task<string> DownloadWebSiteContent(string url)
-        {
-            var httpClient = new HttpClient();
-            using (httpClient)
-            {
-                var response = await httpClient.GetAsync(url);
-
-                var html = await response.Content.ReadAsStringAsync();
-
-                return html.Substring(0, 2000);
-            }
-        }
 
         private static void AddCookiesAction(Request request, Response response)
         {
