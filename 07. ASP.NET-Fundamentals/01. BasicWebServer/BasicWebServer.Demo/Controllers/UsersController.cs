@@ -54,5 +54,15 @@ namespace BasicWebServer.Demo.Controllers
 
             return Html("<h3>Logged out successfully!</h3>");
         }
+
+        public Response GetUserData()
+        {
+            if (this.Request.Session.ContainsKey(Session.SessionUserKey))
+            {
+                return Html($"<h3>Currently logged-in user is with username '{UsersController.Username}'</h3>");
+            }
+
+            return Redirect("/Login");
+        }
     }
 }
