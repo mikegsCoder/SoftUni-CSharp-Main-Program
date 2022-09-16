@@ -29,7 +29,8 @@ namespace BasicWebServer.Demo
                 .MapGet<HomeController>("/Session", c => c.Session())
                 .MapGet<UsersController>("/Login", c => c.Login())
                 .MapPost<UsersController>("/Login", c => c.LogInUser())
-                .MapGet<UsersController>("/Logout", c => c.Logout()))
+                .MapGet<UsersController>("/Logout", c => c.Logout())
+                .MapGet<UsersController>("/UserProfile", c => c.GetUserData()))
             .Start();
     }
 }
