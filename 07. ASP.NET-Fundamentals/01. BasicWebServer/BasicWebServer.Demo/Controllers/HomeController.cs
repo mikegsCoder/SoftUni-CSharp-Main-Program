@@ -34,7 +34,7 @@ namespace BasicWebServer.Demo.Controllers
 
         public Response Redirect() => Redirect("https://softuni.org/");
 
-        public Response Html() => Html(HomeController.HtmlForm);
+        public Response Html() => View();
 
         public Response HtmlFormPost()
         {
@@ -49,7 +49,7 @@ namespace BasicWebServer.Demo.Controllers
             return Text(formData);
         }
 
-        public Response Content() => Html(HomeController.DownloadForm);
+        public Response Content() => View();
 
         public Response DownloadContent()
         {
