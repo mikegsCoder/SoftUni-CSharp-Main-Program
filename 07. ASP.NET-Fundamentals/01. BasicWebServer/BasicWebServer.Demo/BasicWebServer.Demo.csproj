@@ -12,4 +12,8 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Views\Home\HtmlFormPost.cshtml" />
+  </ItemGroup>
+
 </Project>
