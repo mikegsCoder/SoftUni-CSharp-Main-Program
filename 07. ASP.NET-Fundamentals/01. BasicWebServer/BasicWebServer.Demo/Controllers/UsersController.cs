@@ -36,8 +36,8 @@ namespace BasicWebServer.Demo.Controllers
                     this.Request.Session[Session.SessionUserKey] = "MyUserId";
 
                     var cookies = new CookieCollection();
-                    cookies.Add(Session.SessionCookieName,
-                        this.Request.Session.Id);
+
+                    cookies.Add(Session.SessionCookieName,this.Request.Session.Id);
 
                     return Html("<h3>Logged successfully!</h3>", cookies);
                 }

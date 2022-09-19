@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
+﻿using System.Threading.Tasks;
 using BasicWebServer.Demo.Controllers;
 using BasicWebServer.Server;
 using BasicWebServer.Server.Controllers;
-using BasicWebServer.Server.HTTP;
-using BasicWebServer.Server.Responses;
-using static System.Collections.Specialized.BitVector32;
 
 namespace BasicWebServer.Demo
 {

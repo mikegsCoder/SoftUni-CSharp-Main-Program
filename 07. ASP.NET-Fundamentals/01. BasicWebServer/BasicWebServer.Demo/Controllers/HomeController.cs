@@ -18,7 +18,6 @@ namespace BasicWebServer.Demo.Controllers
         public HomeController(Request request)
             : base(request)
         {
-
         }
 
         public Response Index() => Text("Hello from the server!");
@@ -72,12 +71,14 @@ namespace BasicWebServer.Demo.Controllers
                         .Append($"<td>{HttpUtility.HtmlEncode(cookie.Value)}</td>");
                     cookieText.Append("</tr>");
                 }
+
                 cookieText.Append("</table>");
 
                 return Html(cookieText.ToString());
             }
 
             var cookies = new CookieCollection();
+
             cookies.Add("My-Cookie", "My-Cookie");
             cookies.Add("My-Second-Cookie", "My-Second-Value");
 
@@ -120,6 +121,7 @@ namespace BasicWebServer.Demo.Controllers
         private static async Task<string> DownloadWebSiteContent(string url)
         {
             var httpClient = new HttpClient();
+
             using (httpClient)
             {
                 var response = await httpClient.GetAsync(url);
