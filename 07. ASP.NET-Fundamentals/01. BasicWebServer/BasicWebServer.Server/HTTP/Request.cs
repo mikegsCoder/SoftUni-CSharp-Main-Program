@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Web;
-using static System.Collections.Specialized.BitVector32;
 
 namespace BasicWebServer.Server.HTTP
 {

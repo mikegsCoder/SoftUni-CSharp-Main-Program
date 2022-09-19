@@ -30,10 +30,8 @@ namespace BasicWebServer.Server.HTTP
             set => this.data[key] = value;
         }
 
-        public bool ContainsKey(string key)
-            => this.data.ContainsKey(key);
+        public bool ContainsKey(string key) => this.data.ContainsKey(key);
 
-        public void Clear()
-           => this.data.Clear();
+        public void Clear() => this.data.Clear();
     }
 }
