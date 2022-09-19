@@ -1,28 +1,19 @@
-﻿using BasicWebServer.Server.Controllers;
-using BasicWebServer.Server.HTTP;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Web;
+using System.Linq;
+using System.Text;
+using System.Net.Http;
+using System.Threading.Tasks;
+using BasicWebServer.Demo.Models;
+using System.Collections.Generic;
+using BasicWebServer.Server.HTTP;
+using BasicWebServer.Server.Controllers;
 
 namespace BasicWebServer.Demo.Controllers
 {
     public class HomeController : Controller
     {
         private const string FileName = "content.txt";
-
-        private const string HtmlForm = @"<form action='/HTML' method='POST'>
-            Name: <input type='text' name='Name'/>
-            Age: <input type='number' name ='Age'/>
-            <input type='submit' value ='Save' />
-        </form>";
-
-        private const string DownloadForm = @"<form action='/Content' method='POST'>
-                <input type='submit' value ='Download Sites Content' /> 
-            </form>";
 
         public HomeController(Request request)
             : base(request)
@@ -38,15 +29,16 @@ namespace BasicWebServer.Demo.Controllers
 
         public Response HtmlFormPost()
         {
-            string formData = string.Empty;
+            var name = this.Request.Form["Name"];
+            var age = this.Request.Form["Age"];
 
-            foreach (var (key, value) in this.Request.Form)
+            var model = new FormViewModel()
             {
-                formData += $"{key} - {value}";
-                formData += Environment.NewLine;
-            }
+                Name = name,
+                Age = int.Parse(age)
+            };
 
-            return Text(formData);
+            return View(model);
         }
 
         public Response Content() => View();
