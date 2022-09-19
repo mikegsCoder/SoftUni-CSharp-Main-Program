@@ -1,5 +1,4 @@
 ﻿using BasicWebServer.Server.HTTP;
-using System;
 
 namespace BasicWebServer.Server.Responses
 {

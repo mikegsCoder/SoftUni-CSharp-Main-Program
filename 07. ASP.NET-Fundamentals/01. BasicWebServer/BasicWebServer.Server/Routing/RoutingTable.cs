@@ -49,6 +49,7 @@ namespace BasicWebServer.Server.Routing
             }
 
             var responseFunction = this.routes[requestMethod][requestUrl];
+
             return responseFunction(request);
         }
     }
