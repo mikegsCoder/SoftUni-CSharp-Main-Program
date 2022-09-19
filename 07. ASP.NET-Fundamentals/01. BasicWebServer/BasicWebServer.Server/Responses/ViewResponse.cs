@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Linq;
-using System.Reflection;
 using BasicWebServer.Server.HTTP;
 
 namespace BasicWebServer.Server.Responses
