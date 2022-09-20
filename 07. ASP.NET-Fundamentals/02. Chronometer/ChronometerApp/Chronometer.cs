@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,9 +9,18 @@ namespace ChronometerApp
 {
     internal class Chronometer : IChronometer
     {
-        public string GetTime => throw new NotImplementedException();
+        private Stopwatch stopWatch;
+        private List<string> laps;
 
-        public List<string> Laps => throw new NotImplementedException();
+        public Chronometer()
+        {
+            this.stopWatch = new Stopwatch();
+            this.laps = new List<string>();
+        }
+
+        public string GetTime => this.stopWatch.Elapsed.ToString(@"mm\:ss\.ffff");
+
+        public List<string> Laps => this.laps;
 
         public string Lap()
         {
