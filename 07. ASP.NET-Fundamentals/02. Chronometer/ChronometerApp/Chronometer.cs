@@ -29,7 +29,8 @@ namespace ChronometerApp
 
         public void Reset()
         {
-            throw new NotImplementedException();
+            this.stopWatch.Reset();
+            this.laps.Clear();
         }
 
         public void Start()
