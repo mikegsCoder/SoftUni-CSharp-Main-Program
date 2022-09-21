@@ -34,7 +34,7 @@ namespace ChronometerApp
 
         public void Start()
         {
-            throw new NotImplementedException();
+            this.stopWatch.Start();
         }
 
         public void Stop()
