@@ -24,7 +24,9 @@ namespace ChronometerApp
 
         public string Lap()
         {
-            throw new NotImplementedException();
+            string result = this.stopWatch.Elapsed.ToString(@"mm\:ss\.ffff");
+            this.laps.Add(result);
+            return result;
         }
 
         public void Reset()
