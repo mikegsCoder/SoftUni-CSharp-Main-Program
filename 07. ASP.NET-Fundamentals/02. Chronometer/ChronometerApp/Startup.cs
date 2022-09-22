@@ -49,6 +49,8 @@ namespace ChronometerApp
                     Console.WriteLine(chronometer.GetTime);
                 }
             }
+
+            chronometer.Stop();
         }
     }
 }
