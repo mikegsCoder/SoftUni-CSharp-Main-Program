@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChronometerApp
 {
@@ -26,6 +22,7 @@ namespace ChronometerApp
         {
             string result = this.stopWatch.Elapsed.ToString(@"mm\:ss\.ffff");
             this.laps.Add(result);
+
             return result;
         }
 
