@@ -1,10 +1,18 @@
-﻿namespace HttpClientDemo
+﻿using System.Net.Sockets;
+using System.Net;
+using System.Text;
+
+namespace HttpClientDemo
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            
+            Console.OutputEncoding = Encoding.UTF8;  // => to read cyrillic letters
+            const string NewLine = "\r\n"; // => add new line
+
+            TcpListener tcpListener = new TcpListener(IPAddress.Loopback, 80);  // => choice a port to listen
+            tcpListener.Start();  // => start the listener
         }
 
         public static async Task ReadData()
