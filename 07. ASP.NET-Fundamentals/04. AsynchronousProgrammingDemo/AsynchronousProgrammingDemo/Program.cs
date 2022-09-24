@@ -2,9 +2,15 @@
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+
+            HttpClient httpClient = new HttpClient();
+            string url = "https://softuni.bg";
+            HttpResponseMessage httpResponse = await httpClient.GetAsync(url);
+            string result = await httpResponse.Content.ReadAsStringAsync();
+            Console.WriteLine(result);
+            Console.WriteLine("Control string");
         }
     }
 }
