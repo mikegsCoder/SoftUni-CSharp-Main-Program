@@ -4,7 +4,14 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Thread threadEven = new Thread(PrintEvenNumbers);
+            Thread threadUneven = new Thread(PrintUnevenNumbers);
+
+            threadEven.Start();
+            threadUneven.Start();
+
+            threadEven.Join();
+            threadUneven.Join();
         }
 
         private static void PrintEvenNumbers()
