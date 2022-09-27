@@ -26,8 +26,21 @@ namespace Demo_State_Management
             while (true)
             {
                 TcpClient client = await tcpListener.AcceptTcpClientAsync();
+                await ProcessClientAsync(client);
             }
 
+            static async Task ProcessClientAsync(TcpClient client)
+            {
+                await using (var stream = client.GetStream())
+                {
+                    byte[] buffer = new byte[1000000];
+                    var lenght = stream.Read(buffer, 0, buffer.Length);
+
+                    string requestString = Encoding.UTF8.GetString(buffer, 0, lenght);
+                    Console.WriteLine(requestString);
+
+                }
+            }
         }
     }
 }
