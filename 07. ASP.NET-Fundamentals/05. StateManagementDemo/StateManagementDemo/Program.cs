@@ -84,6 +84,10 @@ namespace Demo_State_Management
                         + NewLine + html
                         + NewLine;
 
+                    byte[] responseBytes = Encoding.UTF8.GetBytes(response);
+                    await stream.WriteAsync(responseBytes, 0, responseBytes.Length);
+                    Console.WriteLine($"sid={sid}");
+                    Console.WriteLine(new string('=', 70));
                 }
             }
         }
