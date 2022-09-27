@@ -62,6 +62,28 @@ namespace Demo_State_Management
                     {
                         sessionSet = true;
                     }
+
+                    string html = $"<h1>Hello from My_Server {DateTime.Now} for the {SessionStorage[sid]} time</h1>" +
+                    $"<form action=/tweet method=post><input name=username /><input name=password />" +
+                    $"<input type=submit /></form>";
+
+                    string response = "HTTP/1.1 200 OK"
+                        + NewLine + "Server: MyServer 2022"
+                        + NewLine +
+                        //"Location: https://www.google.com" + NewLine +
+                        "Content-Type: text/html; charset=utf-8"
+                        + NewLine +
+                        "X-Server-Version: 1.0"
+                        + NewLine +
+                        (!sessionSet ? ($"Set-Cookie: sid={sid}; lang=en; Expires: " + DateTime.UtcNow.AddHours(1).ToString("R")) : string.Empty)
+                        + NewLine +
+
+                        // "Content-Disposition: attachment; filename=test.txt" + NewLine +
+                        "Content-Lenght: " + html.Length
+                        + NewLine
+                        + NewLine + html
+                        + NewLine;
+
                 }
             }
         }
