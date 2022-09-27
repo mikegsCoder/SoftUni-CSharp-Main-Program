@@ -39,6 +39,29 @@ namespace Demo_State_Management
                     string requestString = Encoding.UTF8.GetString(buffer, 0, lenght);
                     Console.WriteLine(requestString);
 
+
+
+                    var sid = Guid.NewGuid().ToString();
+                    var match = Regex.Match(requestString, @"sid=[^\n]*\r\n]"); 
+                                                                                 
+                           
+                    if (match.Success) 
+                    {
+                        sid = match.Value.Substring(4);
+                    }
+
+                    if (!SessionStorage.ContainsKey(sid))
+                    {
+                        SessionStorage.Add(sid, 0);
+                    }
+
+                    SessionStorage[sid]++;
+
+                    bool sessionSet = false;
+                    if (requestString.Contains("sid ="))
+                    {
+                        sessionSet = true;
+                    }
                 }
             }
         }
