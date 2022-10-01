@@ -22,6 +22,13 @@ namespace SUS.MvcFramework
             return response;
         }
 
-       
+        public HttpResponse File(string filePath, string contentType)
+        {
+            var fileBytes = System.IO.File.ReadAllBytes(filePath);
+
+            var response = new HttpResponse(contentType, fileBytes);
+
+            return response;
+        }
     }
 }
