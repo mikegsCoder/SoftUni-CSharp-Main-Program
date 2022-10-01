@@ -30,5 +30,14 @@ namespace SUS.MvcFramework
 
             return response;
         }
+
+        public HttpResponse Redirect(string url)
+        {
+            var response = new HttpResponse(HttpStatusCode.Found);
+
+            response.Headers.Add(new Header("Location", url));
+
+            return response;
+        }
     }
 }
