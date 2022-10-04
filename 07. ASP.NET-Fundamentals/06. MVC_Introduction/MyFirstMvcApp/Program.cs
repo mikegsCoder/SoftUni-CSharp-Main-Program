@@ -1,10 +1,12 @@
-﻿namespace MyFirstMvcApp
+﻿using SUS.MvcFramework;
+
+namespace MyFirstMvcApp
 {
     internal class Program
     {
-        static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            
+            await Host.CreateHostAsync(new Startup(), 80);
         }
     }
 }
