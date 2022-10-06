@@ -1,5 +1,4 @@
 ﻿using SUS.HTTP;
-using System.Collections.Generic;
 
 namespace SUS.MvcFramework
 {

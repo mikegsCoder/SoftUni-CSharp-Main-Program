@@ -1,7 +1,5 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 using SUS.HTTP.Enums;
-using System.Collections.Generic;
 
 namespace SUS.HTTP
 {

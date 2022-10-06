@@ -1,8 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Linq;
-using SUS.HTTP.Enums;
-using System.Collections.Generic;
+﻿using System.Text;
 using HttpMethod = SUS.HTTP.Enums.HttpMethod;
 
 namespace SUS.HTTP
