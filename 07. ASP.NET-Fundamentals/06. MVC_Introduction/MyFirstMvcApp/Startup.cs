@@ -1,8 +1,6 @@
 ﻿using SUS.HTTP;
 using SUS.MvcFramework;
 using MyFirstMvcApp.Controllers;
-using System.Collections.Generic;
-using SUS.HTTP.Enums;
 using HttpMethod = SUS.HTTP.Enums.HttpMethod;
 
 namespace MyFirstMvcApp
