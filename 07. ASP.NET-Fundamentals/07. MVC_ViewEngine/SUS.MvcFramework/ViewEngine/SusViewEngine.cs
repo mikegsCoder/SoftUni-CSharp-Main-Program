@@ -23,5 +23,56 @@ namespace SUS.MvcFramework.ViewEngine
 
             return html;
         }
+
+        private string GenerateCSharpFromTemplate(string templateCode, object viewModel)
+        {
+            string typeOfModel = "object";
+
+            if (viewModel != null)
+            {
+                if (viewModel.GetType().IsGenericType)
+                {
+                    var modelName = viewModel.GetType().FullName;
+
+                    var genericArguments = viewModel.GetType().GenericTypeArguments;
+
+                    typeOfModel = modelName
+                        .Substring(0, modelName.IndexOf('`'))
+                        + "<" + string.Join(",", genericArguments.Select(x => x.FullName)) + ">";
+                }
+                else
+                {
+                    typeOfModel = viewModel.GetType().FullName;
+                }
+            }
+
+            string csharpCode = @"
+using System;
+using System.Text;
+using System.Linq;
+using System.Collections.Generic;
+using SUS.MvcFramework.ViewEngine;
+
+namespace ViewNamespace
+{
+    public class ViewClass : IView
+    {
+        public string ExecuteTemplate(object viewModel, string user)
+        {
+            var User = user;
+
+            var Model = viewModel as " + typeOfModel + @";
+
+            var html = new StringBuilder();
+
+            " + GetMethodBody(templateCode) + @"
+
+            return html.ToString();
+        }
+    }
+}
+";
+            return csharpCode;
+        }
     }
 }
