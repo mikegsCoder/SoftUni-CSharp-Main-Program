@@ -1,6 +1,4 @@
-﻿using System;
-using SUS.HTTP.Enums;
-using HttpMethod = SUS.HTTP.Enums.HttpMethod;
+﻿using HttpMethod = SUS.HTTP.Enums.HttpMethod;
 
 namespace SUS.HTTP
 {

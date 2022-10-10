@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SUS.HTTP
+﻿namespace SUS.HTTP
 {
     public class Header
     {
