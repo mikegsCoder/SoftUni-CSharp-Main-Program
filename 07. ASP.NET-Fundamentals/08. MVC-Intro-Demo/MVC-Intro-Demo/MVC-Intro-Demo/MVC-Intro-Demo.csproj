@@ -16,4 +16,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.8" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Products\" />
+  </ItemGroup>
+
 </Project>

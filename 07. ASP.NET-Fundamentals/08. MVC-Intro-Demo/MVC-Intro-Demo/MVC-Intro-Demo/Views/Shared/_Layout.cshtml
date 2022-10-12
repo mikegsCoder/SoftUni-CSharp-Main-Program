@@ -25,27 +25,27 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                         <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
                         </li>
-                         <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Numbers">Numbers</a>
                         </li>
-                         <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="NumbersToN">NumbersToN</a>
                         </li>
-                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">Products</a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-                               <a class="dropdown-item" asp-controller="Products" asp-action="My-Products">All</a>
-                               <a class="dropdown-item" asp-controller="Products" asp-action="AllAsJson">All (JSON)</a>
-                               <a class="dropdown-item" asp-controller="Products" asp-action="AllAsText">All (Plain Text)</a>
-                               <a class="dropdown-item" asp-controller="Products" asp-action="AllAsTextFile">All (Text File)</a>
-                            </div>
-                        </li>
                     </ul>
-                    <partial name="_LoginPartial" />
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Products
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <a class="dropdown-item" asp-controller="Products" asp-action="All">All</a>
+                            <a class="dropdown-item" asp-controller="Products" asp-action="AllAsJson">All (JSON)</a>
+                            <a class="dropdown-item" asp-controller="Products" asp-action="AllAsText">All (Plain Text)</a>
+                            <a class="dropdown-item" asp-controller="Products" asp-action="AllAsTextFile">All (TextFile)</a>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
