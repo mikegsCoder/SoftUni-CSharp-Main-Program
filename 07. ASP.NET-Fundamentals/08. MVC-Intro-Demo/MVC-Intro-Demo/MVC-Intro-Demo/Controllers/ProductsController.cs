@@ -46,5 +46,19 @@ namespace MVC_Intro_Demo.Controllers
 
             return this.View(products);
         }
+
+        [ActionName("My-Products")]
+        public IActionResult SelectProducts(string keyword)
+        {
+            if (keyword != null)
+            {
+                IEnumerable<ProductViewModel> selectedproducts = products
+                        .Where(p => p.Name.ToLower().Contains(keyword.ToLower()))
+                        .ToArray();
+                return this.View(selectedproducts);
+            }
+
+            return this.View(products);
+        }
     }
 }
