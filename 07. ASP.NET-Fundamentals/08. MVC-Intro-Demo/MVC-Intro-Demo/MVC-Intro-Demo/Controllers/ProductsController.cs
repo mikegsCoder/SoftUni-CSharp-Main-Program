@@ -81,6 +81,15 @@ namespace MVC_Intro_Demo.Controllers
             return Content(textResult.ToString());
         }
 
+        public IActionResult AllAsTextFile()
+        {
+            string textResult = GetAllProductInfoAsString();
+
+            Response.Headers.Add(HeaderNames.ContentDisposition, @"attachment;filename=All-Products-Info.txt");
+
+            return File(Encoding.UTF8.GetBytes(textResult), "text/plain");
+        }
+
         private string GetAllProductInfoAsString()
         {
             StringBuilder textResult = new StringBuilder();
