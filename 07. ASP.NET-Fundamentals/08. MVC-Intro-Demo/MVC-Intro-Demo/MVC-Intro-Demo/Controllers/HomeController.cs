@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MVC_Intro_Demo.Models;
 using System.Diagnostics;
-using System.Text.Json;
 
 namespace MVC_Intro_Demo.Controllers
 {

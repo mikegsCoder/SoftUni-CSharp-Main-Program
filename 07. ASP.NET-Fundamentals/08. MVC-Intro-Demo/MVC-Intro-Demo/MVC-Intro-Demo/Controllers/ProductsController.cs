@@ -45,6 +45,7 @@ namespace MVC_Intro_Demo.Controllers
                 IEnumerable<ProductViewModel> selectedproducts = products
                         .Where(p => p.Name.ToLower().Contains(keyword.ToLower()))
                         .ToArray();
+
                 return this.View(selectedproducts);
             }
 
@@ -59,6 +60,7 @@ namespace MVC_Intro_Demo.Controllers
                 IEnumerable<ProductViewModel> selectedproducts = products
                         .Where(p => p.Name.ToLower().Contains(keyword.ToLower()))
                         .ToArray();
+
                 return this.View(selectedproducts);
             }
 
