@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MVC_Intro_Demo.ViewModels;
+using System.Text.Json;
 
 namespace MVC_Intro_Demo.Controllers
 {
@@ -59,6 +60,16 @@ namespace MVC_Intro_Demo.Controllers
             }
 
             return this.View(products);
+        }
+
+        public IActionResult AllAsJson()
+        {
+            JsonSerializerOptions jsonOptions = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+            };
+
+            return this.Json(products, jsonOptions);
         }
     }
 }
