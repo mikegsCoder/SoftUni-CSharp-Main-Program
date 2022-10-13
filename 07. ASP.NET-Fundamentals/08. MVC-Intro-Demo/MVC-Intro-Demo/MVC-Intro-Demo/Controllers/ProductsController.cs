@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
 using MVC_Intro_Demo.ViewModels;
+using System.Text;
 using System.Text.Json;
 
 namespace MVC_Intro_Demo.Controllers
@@ -70,6 +72,26 @@ namespace MVC_Intro_Demo.Controllers
             };
 
             return this.Json(products, jsonOptions);
+        }
+
+        public IActionResult AllAsText()
+        {
+            string textResult = GetAllProductInfoAsString();
+
+            return Content(textResult.ToString());
+        }
+
+        private string GetAllProductInfoAsString()
+        {
+            StringBuilder textResult = new StringBuilder();
+
+            foreach (var product in products)
+            {
+                textResult.Append($"product {product.Id}: {product.Name} - {product.Price} lv")
+                          .Append(Environment.NewLine);
+            }
+
+            return textResult.ToString().TrimEnd();
         }
     }
 }
