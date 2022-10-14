@@ -13,6 +13,7 @@ namespace ChatApp.Controllers
             {
                 return View(new ChatViewModel());
             }
+
             var chatModel = new ChatViewModel()
             {
                 Messages = Messages
