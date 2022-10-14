@@ -27,5 +27,13 @@ namespace ChatApp.Controllers
             return View(chatModel);
         }
 
+        [HttpPost]
+        public IActionResult Send(ChatViewModel chat)
+        {
+            var newMessage = chat.CurrentMessage;
+            Messages.Add(new KeyValuePair<string, string>(newMessage.Sender, newMessage.MessageText));
+
+            return RedirectToAction("Show");
+        }
     }
 }
