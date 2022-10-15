@@ -13,9 +13,9 @@ namespace TextSplitterAp.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(TextViewModel model)
         {
-            return View();
+            return View(model);
         }
 
         public IActionResult Privacy()
