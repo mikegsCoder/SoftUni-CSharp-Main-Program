@@ -18,6 +18,16 @@ namespace TextSplitterAp.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public IActionResult Split(TextViewModel model)
+        {
+            var splitTextArray = model.Text.Split(" ", StringSplitOptions.RemoveEmptyEntries).ToArray();
+
+            model.SplitText = string.Join(Environment.NewLine, splitTextArray);
+
+            return RedirectToAction("Index", model);
+        }
+
         public IActionResult Privacy()
         {
             return View();
