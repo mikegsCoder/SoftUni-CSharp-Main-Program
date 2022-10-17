@@ -29,5 +29,13 @@ namespace ForumApp.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public IActionResult Add()
+        {
+            var model = new AddPostViewModel();
+
+            return View(model);
+        }
     }
 }
