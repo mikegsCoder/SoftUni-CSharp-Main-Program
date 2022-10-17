@@ -37,5 +37,25 @@ namespace ForumApp.Controllers
 
             return View(model);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(PostViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewData["Title"] = "Add new Post";
+                return View(model);
+            }
+
+
+            context.Posts.Add(new Post()
+            {
+                Title = model.Title,
+                Content = model.Content
+            });
+
+            await context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
