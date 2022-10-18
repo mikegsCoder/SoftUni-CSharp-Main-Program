@@ -77,5 +77,26 @@ namespace ForumApp.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        [HttpPost]
+        public async Task<IActionResult> Edit(PostViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+
+                return View(model);
+            }
+
+            var post = await context.Posts.FindAsync(model.Id);
+
+            if (post != null)
+            {
+                post.Title = model.Title;
+                post.Content = model.Content;
+            }
+
+            await context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
