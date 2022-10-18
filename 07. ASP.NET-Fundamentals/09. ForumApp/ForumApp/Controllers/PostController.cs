@@ -55,6 +55,7 @@ namespace ForumApp.Controllers
             });
 
             await context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -70,6 +71,7 @@ namespace ForumApp.Controllers
                     Content = p.Content
                 })
                 .FirstOrDefaultAsync();
+
             if (post != null)
             {
                 return View(post);
@@ -77,6 +79,7 @@ namespace ForumApp.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
         [HttpPost]
         public async Task<IActionResult> Edit(PostViewModel model)
         {
@@ -95,12 +98,15 @@ namespace ForumApp.Controllers
             }
 
             await context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
+
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
             var post = await context.Posts.FindAsync(id);
+
             if (post != null)
             {
                 post.IsDeleted = true;
