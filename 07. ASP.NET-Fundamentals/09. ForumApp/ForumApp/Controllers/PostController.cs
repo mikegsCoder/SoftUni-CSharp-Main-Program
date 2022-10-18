@@ -97,6 +97,18 @@ namespace ForumApp.Controllers
             await context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var post = await context.Posts.FindAsync(id);
+            if (post != null)
+            {
+                post.IsDeleted = true;
 
+                await context.SaveChangesAsync();
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
