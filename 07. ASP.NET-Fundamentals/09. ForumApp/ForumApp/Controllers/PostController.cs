@@ -57,5 +57,25 @@ namespace ForumApp.Controllers
             await context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var post = await context.Posts
+                .Where(p => p.Id == id)
+                .Select(p => new PostViewModel()
+                {
+                    Id = p.Id,
+                    Title = p.Title,
+                    Content = p.Content
+                })
+                .FirstOrDefaultAsync();
+            if (post != null)
+            {
+                return View(post);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
