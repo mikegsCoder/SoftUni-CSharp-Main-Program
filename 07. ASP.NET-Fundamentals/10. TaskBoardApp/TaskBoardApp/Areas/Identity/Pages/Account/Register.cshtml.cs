@@ -18,35 +18,32 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using TaskBoardApp.Data.Entities;
-using static TaskBoardApp.Data.DataConstants.User;
 
 namespace TaskBoardApp.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<User> _signInManager;
-        private readonly UserManager<User> _userManager;
+        //private readonly SignInManager<User> _signInManager;
+        //private readonly UserManager<User> _userManager;
         //private readonly IUserStore<User> _userStore;
         //private readonly IUserEmailStore<User> _emailStore;
         //private readonly ILogger<RegisterModel> _logger;
         //private readonly IEmailSender _emailSender;
 
-        public RegisterModel(
-            UserManager<User> userManager,
+        //public RegisterModel(
+            //UserManager<User> userManager,
             //IUserStore<User> userStore,
-            SignInManager<User> signInManager)
+            //SignInManager<User> signInManager)
             //ILogger<RegisterModel> logger,
             //IEmailSender emailSender)
-        {
-            _userManager = userManager;
+        //{
+            //_userManager = userManager;
             //_userStore = userStore;
             //_emailStore = GetEmailStore();
-            _signInManager = signInManager;
             //_logger = logger;
             //_emailSender = emailSender;
-        }
+        //}
 
        
         /// <summary>
@@ -102,19 +99,19 @@ namespace TaskBoardApp.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
-            [Required]
-            [Display(Name = "First name")]
-            [StringLength(MaxUserFirstName)]
-            public string FirstName { get; set; }
+            //[Required]
+            //[Display(Name = "First name")]
+            //[StringLength(MaxUserFirstName)]
+            //public string FirstName { get; set; }
 
-            [Required]
-            [Display(Name = "Last name")]
-            [StringLength(MaxUserLastName)]
-            public string LastName { get; set; }
+            //[Required]
+            //[Display(Name = "Last name")]
+            //[StringLength(MaxUserLastName)]
+            //public string LastName { get; set; }
 
-            [Required]
-            [Display(Name = "Username")]
-            [StringLength(MaxUserUsername)]
+            //[Required]
+            //[Display(Name = "Username")]
+            //[StringLength(MaxUserUsername)]
             public string Username { get; set; }
 
         }
@@ -132,29 +129,29 @@ namespace TaskBoardApp.Areas.Identity.Pages.Account
             //ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new User
-                {
-                    UserName = Input.Username,
-                    Email = Input.Email,
-                    FirstName = Input.FirstName,
-                    LastName = Input.LastName
-                };
+                //var user = new User
+                //{
+                //    UserName = Input.Username,
+                //    Email = Input.Email,
+                //    FirstName = Input.FirstName,
+                //    LastName = Input.LastName
+                //};
 
-                //await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-                //await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                var result = await _userManager.CreateAsync(user, Input.Password);
+                ////await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+                ////await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                //var result = await _userManager.CreateAsync(user, Input.Password);
 
-                if (result.Succeeded)
-                {
+                //if (result.Succeeded)
+                //{
 
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(returnUrl);
+                //    await _signInManager.SignInAsync(user, isPersistent: false);
+                //    return LocalRedirect(returnUrl);
                    
-                }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
+                //}
+                //foreach (var error in result.Errors)
+                //{
+                //    ModelState.AddModelError(string.Empty, error.Description);
+                //}
             }
 
             // If we got this far, something failed, redisplay form
