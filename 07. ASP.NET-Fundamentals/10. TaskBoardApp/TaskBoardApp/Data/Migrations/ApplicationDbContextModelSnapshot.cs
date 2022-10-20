@@ -175,6 +175,23 @@ namespace TaskBoardApp.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Boards");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Open"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "In Progress"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Done"
+                        });
                 });
 
             modelBuilder.Entity("TaskBoardApp.Data.Entities.Task", b =>
@@ -212,6 +229,44 @@ namespace TaskBoardApp.Data.Migrations
                     b.HasIndex("OwnerId");
 
                     b.ToTable("Tasks");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BoardId = 1,
+                            CreatedOn = new DateTime(2022, 9, 20, 12, 41, 19, 259, DateTimeKind.Local).AddTicks(6010),
+                            Description = "Learn using ASP.NET Core Identity",
+                            OwnerId = "84323ef1-1aa9-4a64-bc88-183cce025616",
+                            Title = "Prepare for ASP.NET fundamentals exam"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BoardId = 3,
+                            CreatedOn = new DateTime(2022, 5, 20, 12, 41, 19, 259, DateTimeKind.Local).AddTicks(6051),
+                            Description = "Learn using EF Core and MS SQL Server Management Studio",
+                            OwnerId = "84323ef1-1aa9-4a64-bc88-183cce025616",
+                            Title = "Improve EF Core skills"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BoardId = 2,
+                            CreatedOn = new DateTime(2022, 10, 10, 12, 41, 19, 259, DateTimeKind.Local).AddTicks(6056),
+                            Description = "Learn using ASP.NET Core Identity",
+                            OwnerId = "84323ef1-1aa9-4a64-bc88-183cce025616",
+                            Title = "Improve ASP.NET Core skills"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BoardId = 2,
+                            CreatedOn = new DateTime(2021, 10, 20, 12, 41, 19, 259, DateTimeKind.Local).AddTicks(6059),
+                            Description = "Prepare for silving old Mid and Final exams",
+                            OwnerId = "84323ef1-1aa9-4a64-bc88-183cce025616",
+                            Title = "Prepare for C# Fundamentals Exam"
+                        });
                 });
 
             modelBuilder.Entity("TaskBoardApp.Data.Entities.User", b =>
@@ -287,6 +342,26 @@ namespace TaskBoardApp.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "84323ef1-1aa9-4a64-bc88-183cce025616",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "d83446eb-7cbc-4b06-a22a-05552d9321df",
+                            Email = "guest@mail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Guest",
+                            LastName = "User",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "GUEST@MAIL.COM",
+                            NormalizedUserName = "GUEST",
+                            PasswordHash = "AQAAAAEAACcQAAAAEG5Z3sThEggzTjBlDtVAamQwTg4KODfTWg4NDpWAapsKjaEmnBX7oze98wjI+RAkng==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "68bb9896-fe98-41a4-b830-0a4d22e8d5d2",
+                            TwoFactorEnabled = false,
+                            UserName = "guest"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
