@@ -22,10 +22,17 @@ namespace TaskBoardApp.Controllers
         {
             TaskFormModel taskModel = new TaskFormModel()
             {
-                Boards = GetBoards()
+                Boards = await GetBoards()
             };
 
             return View(taskModel);
         }
+
+        private async Task<IEnumerable<TaskBoardModel>> GetBoards()
+        => await this.data.Boards.Select(b => new TaskBoardModel()
+            {
+                Id = b.Id,
+                Name = b.Name,
+            });
     }
 }
