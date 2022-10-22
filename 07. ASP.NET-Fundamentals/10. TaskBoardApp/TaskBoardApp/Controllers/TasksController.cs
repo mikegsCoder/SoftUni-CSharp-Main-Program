@@ -5,7 +5,8 @@ using TaskBoardApp.Models;
 using TaskBoardApp.Models.Tasks;
 using TaskBoardApp.Data.Entities;
 using Task = TaskBoardApp.Data.Entities.Task;
-                                                 
+using Microsoft.EntityFrameworkCore;
+
 namespace TaskBoardApp.Controllers
 {
     public class TasksController : Controller
@@ -18,21 +19,23 @@ namespace TaskBoardApp.Controllers
         }
 
         [HttpGet]
-        public Task<IActionResult> Create()
+        public async Task<IActionResult> Create()
         {
             TaskFormModel taskModel = new TaskFormModel()
             {
-                Boards = await GetBoards()
+                Boards = await GetBoardsAsync()
             };
 
             return View(taskModel);
         }
 
-        private async Task<IEnumerable<TaskBoardModel>> GetBoards()
-        => await this.data.Boards.Select(b => new TaskBoardModel()
-            {
-                Id = b.Id,
-                Name = b.Name,
-            });
+        private async Task<IEnumerable<TaskBoardModel>> GetBoardsAsync()
+            => await this.data.Boards
+                .Select(b => new TaskBoardModel()
+                {
+                    Id = b.Id,
+                    Name = b.Name,
+                })
+                .ToListAsync();
     }
 }
