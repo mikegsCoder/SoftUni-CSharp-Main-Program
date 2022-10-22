@@ -19,7 +19,7 @@ namespace TaskBoardApp.Controllers
         [HttpGet]
         public async Task<IActionResult> All()
         {
-            var boards = data.Boards
+            var boards = await data.Boards
                 .Select(b => new BoardViewModel()
                 {
                     Id = b.Id,
