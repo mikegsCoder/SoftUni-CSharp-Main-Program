@@ -63,5 +63,7 @@ namespace TaskBoardApp.Controllers
                     Name = b.Name,
                 })
                 .ToListAsync();
+
+        private string GetUserId() => this.User.FindFirstValue(ClaimTypes.NameIdentifier);
     }
 }
