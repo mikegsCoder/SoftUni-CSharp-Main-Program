@@ -25,6 +25,5 @@ namespace TaskBoardApp.Data.Entities
         public string OwnerId { get; set; }
 
         public User Owner { get; init; }
-
     }
 }

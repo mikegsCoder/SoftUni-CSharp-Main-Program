@@ -13,9 +13,9 @@ namespace TaskBoardApp.Controllers
     {
         private readonly TaskBoardAppDbContext data;
 
-        public TasksController(TaskBoardAppDbContext context)
+        public TasksController(TaskBoardAppDbContext _data)
         {
-            this.data = context;
+            data = _data;
         }
 
         [HttpGet]
@@ -83,7 +83,7 @@ namespace TaskBoardApp.Controllers
         }
 
         private async Task<IEnumerable<TaskBoardModel>> GetBoardsAsync()
-            => await this.data.Boards
+            => await data.Boards
                 .Select(b => new TaskBoardModel()
                 {
                     Id = b.Id,
@@ -91,6 +91,6 @@ namespace TaskBoardApp.Controllers
                 })
                 .ToListAsync();
 
-        private string GetUserId() => this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        private string GetUserId() => User.FindFirstValue(ClaimTypes.NameIdentifier);
     }
 }

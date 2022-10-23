@@ -7,7 +7,6 @@ namespace TaskBoardApp.Models.Tasks
     {
         [Required]
         [StringLength(MaxTaskTitle, MinimumLength = MinTaskTitle, ErrorMessage = "Title should be at least {2} characters long.")]
-
         public string Title { get; set; }
 
         [Required]

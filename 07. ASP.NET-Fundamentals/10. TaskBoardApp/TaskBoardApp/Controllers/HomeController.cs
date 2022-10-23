@@ -11,20 +11,21 @@ namespace TaskBoardApp.Controllers
     {
         private readonly TaskBoardAppDbContext data;
 
-        public HomeController(TaskBoardAppDbContext data)
+        public HomeController(TaskBoardAppDbContext _data)
         {
-            this.data = data;
+            data = _data;
         }
 
         public async Task<IActionResult> Index()
         {
-            var taskBoards = await this.data.Boards.Select(b => b.Name).Distinct().ToListAsync();
+            var taskBoards = await data.Boards.Select(b => b.Name).Distinct().ToListAsync();
 
             var tasksCounts = new List<HomeBoardModel>();
 
             foreach (var boardName in taskBoards)
             {
-                var tasksInBoard = await this.data.Tasks.Where(t => t.Board.Name == boardName).CountAsync();
+                var tasksInBoard = await data.Tasks.Where(t => t.Board.Name == boardName).CountAsync();
+                
                 tasksCounts.Add(new HomeBoardModel()
                 {
                     BoardName = boardName,
@@ -33,16 +34,17 @@ namespace TaskBoardApp.Controllers
             }
 
             var userTasksCount = -1;
+
             if (this.User?.Identity?.IsAuthenticated ?? false)
             {
                 var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                userTasksCount = await this.data.Tasks.Where(t => t.OwnerId == currentUserId).CountAsync();
 
+                userTasksCount = await data.Tasks.Where(t => t.OwnerId == currentUserId).CountAsync();
             }
 
             var homeModel = new HomeViewModel()
             {
-                AllTasksCount = this.data.Tasks.Count(),
+                AllTasksCount = data.Tasks.Count(),
                 BoardsWithTasksCount = tasksCounts,
                 UserTasksCount = userTasksCount
             };
