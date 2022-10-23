@@ -32,12 +32,14 @@ namespace TaskBoardApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(TaskFormModel taskModel)
         {
-            if (!GetBoards().Any(b => b.Id == taskModel.BoardId))
+            var boardEntities = await GetBoardsAsync();
+
+            if (!boardEntities.Any(b => b.Id == taskModel.BoardId))
             {
-                this.ModelState.AddModelError(nameof(taskModel.BoardId), "Board does not exist!");
+                ModelState.AddModelError(nameof(taskModel.BoardId), "Board does not exist!");
             }
 
-            string currentUserId = GetUserId();
+            var currentUserId = GetUserId();
 
             Task task = new Task()
             {
@@ -52,7 +54,32 @@ namespace TaskBoardApp.Controllers
             await data.SaveChangesAsync();
 
             var boards = data.Boards;
+
             return RedirectToAction("All", "Boards");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var task = await data.Tasks
+                .Where(t => t.Id == id)
+                .Select(t => new TaskDetailsViewModel()
+                {
+                    Id = t.Id,
+                    Title = t.Title,
+                    Description = t.Description,
+                    CreatedOn = t.CreatedOn.ToString("dd/MM/yyyy HH:mm"),
+                    Board = t.Board.Name,
+                    Owner = t.Owner.UserName
+                })
+                .FirstOrDefaultAsync();
+
+            if (task == null)
+            {
+                return BadRequest();
+            }
+
+            return View(task);
         }
 
         private async Task<IEnumerable<TaskBoardModel>> GetBoardsAsync()
