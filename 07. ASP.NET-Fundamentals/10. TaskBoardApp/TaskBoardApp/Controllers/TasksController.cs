@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using TaskBoardApp.Data;
-using TaskBoardApp.Models;
 using TaskBoardApp.Models.Tasks;
-using TaskBoardApp.Data.Entities;
 using Task = TaskBoardApp.Data.Entities.Task;
 using Microsoft.EntityFrameworkCore;
 
