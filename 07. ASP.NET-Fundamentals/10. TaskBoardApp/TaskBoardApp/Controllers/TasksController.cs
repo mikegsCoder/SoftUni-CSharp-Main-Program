@@ -144,6 +144,33 @@ namespace TaskBoardApp.Controllers
             return RedirectToAction("All", "Boards");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            Task task = await data.Tasks.FindAsync(id);
+
+            if (task == null)
+            {
+                return BadRequest();
+            }
+
+            string currentUser = GetUserId();
+
+            if (currentUser != task.OwnerId)
+            {
+                return Unauthorized();
+            }
+
+            TaskViewModel taskModel = new TaskViewModel()
+            {
+                Id = task.Id,
+                Title = task.Title,
+                Description = task.Description
+            };
+
+            return View(taskModel);
+        }
+
         private async Task<IEnumerable<TaskBoardModel>> GetBoardsAsync()
             => await data.Boards
                 .Select(b => new TaskBoardModel()
