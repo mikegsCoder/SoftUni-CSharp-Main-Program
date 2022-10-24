@@ -82,6 +82,35 @@ namespace TaskBoardApp.Controllers
             return View(task);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            Task task = await data.Tasks.FindAsync(id);
+
+
+            if (task == null)
+            {
+                return BadRequest();
+            }
+
+            string currentUser = GetUserId();
+
+            if (currentUser != task.OwnerId)
+            {
+                return Unauthorized();
+            }
+
+            TaskFormModel taskModel = new TaskFormModel()
+            {
+                Title = task.Title,
+                Description = task.Description,
+                BoardId = task.BoardId,
+                Boards = await GetBoardsAsync()
+            };
+
+            return View(taskModel);
+        }
+
         private async Task<IEnumerable<TaskBoardModel>> GetBoardsAsync()
             => await data.Boards
                 .Select(b => new TaskBoardModel()
