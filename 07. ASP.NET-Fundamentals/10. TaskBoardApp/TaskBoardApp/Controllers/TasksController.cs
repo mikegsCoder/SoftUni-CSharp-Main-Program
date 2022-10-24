@@ -111,6 +111,39 @@ namespace TaskBoardApp.Controllers
             return View(taskModel);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, TaskFormModel formModel)
+        {
+            Task task = await data.Tasks.FindAsync(id);
+
+            if (task == null)
+            {
+                return BadRequest();
+            }
+
+            string currentUser = GetUserId();
+
+            if (currentUser != task.OwnerId)
+            {
+                return Unauthorized();
+            }
+
+            var boards = await GetBoardsAsync();
+
+            if (!boards.Any(b => b.Id == formModel.BoardId))
+            {
+                this.ModelState.AddModelError(nameof(formModel.BoardId), "Board does not exist!");
+            }
+
+            task.Title = formModel.Title;
+            task.Description = formModel.Description;
+            task.BoardId = formModel.BoardId;
+
+            await data.SaveChangesAsync();
+
+            return RedirectToAction("All", "Boards");
+        }
+
         private async Task<IEnumerable<TaskBoardModel>> GetBoardsAsync()
             => await data.Boards
                 .Select(b => new TaskBoardModel()
