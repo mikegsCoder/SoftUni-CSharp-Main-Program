@@ -63,5 +63,19 @@ namespace Watchlist.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Login()
+        {
+            if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                return RedirectToAction("All", "Movies"); // Where to redirect logged in user
+            }
+
+            var model = new LoginViewModel();
+
+            return View(model);
+        }
     }
 }
