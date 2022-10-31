@@ -58,5 +58,10 @@ namespace Watchlist.Services
                 })
                 .ToList();
         }
+
+        public async Task<IEnumerable<Genre>> GetGenresAsync()
+        {
+            return await context.Genres.ToListAsync();
+        }
     }
 }

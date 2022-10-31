@@ -8,5 +8,7 @@ namespace Watchlist.Contracts
         Task<IEnumerable<MovieViewModel>> GetAllAsync();
 
         Task<IEnumerable<MovieViewModel>> GetWatchedAsync(string userId);
+
+        Task<IEnumerable<Genre>> GetGenresAsync();
     }
 }
