@@ -31,5 +31,32 @@ namespace Watchlist.Services
                 })
                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<MovieViewModel>> GetWatchedAsync(string userId)
+        {
+            var user = await context.Users
+                .Where(u => u.Id == userId)
+                .Include(u => u.UsersMovies)
+                .ThenInclude(um => um.Movie)
+                .ThenInclude(m => m.Genre)
+                .FirstOrDefaultAsync();
+
+            if (user == null)
+            {
+                throw new ArgumentException("Invalid user Id");
+            }
+
+            return user.UsersMovies
+                .Select(x => new MovieViewModel()
+                {
+                    Title = x.Movie.Title,
+                    Director = x.Movie.Director,
+                    ImageUrl = x.Movie.ImageUrl,
+                    Rating = x.Movie.Rating.ToString("F2"),
+                    Genre = x.Movie.Genre.Name,
+                    Id = x.Movie.Id,
+                })
+                .ToList();
+        }
     }
 }
