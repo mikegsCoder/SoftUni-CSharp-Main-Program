@@ -41,5 +41,16 @@ namespace Watchlist.Controllers
                 return RedirectToAction(nameof(All));
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Add()
+        {
+            var model = new AddMovieViewModel()
+            {
+                Genres = await movieService.GetGenresAsync()
+            };
+
+            return View(model);
+        }
     }
 }
