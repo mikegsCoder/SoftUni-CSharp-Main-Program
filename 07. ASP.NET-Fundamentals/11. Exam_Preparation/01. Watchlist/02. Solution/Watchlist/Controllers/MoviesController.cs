@@ -24,5 +24,22 @@ namespace Watchlist.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Watched()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            try
+            {
+                var model = await movieService.GetWatchedAsync(userId);
+
+                return View("Mine", model);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction(nameof(All));
+            }
+        }
     }
 }
