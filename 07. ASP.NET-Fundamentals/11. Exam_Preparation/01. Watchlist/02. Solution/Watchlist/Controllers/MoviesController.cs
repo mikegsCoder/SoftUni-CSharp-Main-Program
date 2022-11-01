@@ -88,5 +88,21 @@ namespace Watchlist.Controllers
 
             return RedirectToAction(nameof(All));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveFromCollection(int movieId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            try
+            {
+                await movieService.RemoveFromCollectionAsync(movieId, userId);
+            }
+            catch (Exception)
+            {
+            }
+
+            return RedirectToAction(nameof(Watched));
+        }
     }
 }
