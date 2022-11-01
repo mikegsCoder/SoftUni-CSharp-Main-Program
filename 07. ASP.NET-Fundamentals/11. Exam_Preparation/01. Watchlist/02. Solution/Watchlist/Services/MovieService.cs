@@ -115,5 +115,25 @@ namespace Watchlist.Services
 
             await context.SaveChangesAsync();
         }
+
+        public async Task RemoveFromCollectionAsync(int movieId, string userId)
+        {
+            var user = await context.Users
+                .Where(u => u.Id == userId)
+                .Include(u => u.UsersMovies)
+                .FirstOrDefaultAsync();
+
+            var movie = user.UsersMovies
+                .FirstOrDefault(x => x.MovieId == movieId);
+
+            if (user == null || movie == null)
+            {
+                throw new ArgumentException("Invalid userId or movieId provided.");
+            }
+
+            user.UsersMovies.Remove(movie);
+
+            await context.SaveChangesAsync();
+        }
     }
 }
