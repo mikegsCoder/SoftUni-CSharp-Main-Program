@@ -52,5 +52,25 @@ namespace Watchlist.Controllers
 
             return View(model);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(AddMovieViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction(nameof(Add));
+            }
+
+            try
+            {
+                await movieService.AddMovieAsync(model);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction(nameof(Add));
+            }
+
+            return RedirectToAction(nameof(All));
+        }
     }
 }
