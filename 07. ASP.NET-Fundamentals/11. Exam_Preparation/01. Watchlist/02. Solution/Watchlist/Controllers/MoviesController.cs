@@ -72,5 +72,21 @@ namespace Watchlist.Controllers
 
             return RedirectToAction(nameof(All));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AddToCollection(int movieId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            try
+            {
+                await movieService.AddToCollectionAsync(movieId, userId);
+            }
+            catch (Exception)
+            {
+            }
+
+            return RedirectToAction(nameof(All));
+        }
     }
 }
