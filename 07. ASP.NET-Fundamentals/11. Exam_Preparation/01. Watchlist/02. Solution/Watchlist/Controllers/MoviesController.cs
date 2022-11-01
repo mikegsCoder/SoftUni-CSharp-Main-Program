@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Watchlist.Contracts;
 using Watchlist.Models;
-using Watchlist.Services;
 
 namespace Watchlist.Controllers
 {
