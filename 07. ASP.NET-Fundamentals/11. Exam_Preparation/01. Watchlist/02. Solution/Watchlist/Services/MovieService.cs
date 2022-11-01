@@ -63,5 +63,28 @@ namespace Watchlist.Services
         {
             return await context.Genres.ToListAsync();
         }
+
+        public async Task AddMovieAsync(AddMovieViewModel model)
+        {
+            decimal rating;
+
+            if (!decimal.TryParse(model.Rating, NumberStyles.Float, CultureInfo.InvariantCulture, out rating)
+                || rating < 0.00M || rating > 10.00M)
+            {
+                throw new InvalidDataException("Invalid rating.");
+            }
+
+            var movie = new Movie()
+            {
+                Title = model.Title,
+                Director = model.Director,
+                ImageUrl = model.ImageUrl,
+                Rating = rating,
+                GenreId = model.GenreId,
+            };
+
+            await context.Movies.AddAsync(movie);
+            await context.SaveChangesAsync();
+        }
     }
 }
