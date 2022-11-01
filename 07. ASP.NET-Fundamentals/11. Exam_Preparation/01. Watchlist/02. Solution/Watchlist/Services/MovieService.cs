@@ -86,5 +86,34 @@ namespace Watchlist.Services
             await context.Movies.AddAsync(movie);
             await context.SaveChangesAsync();
         }
+
+        public async Task AddToCollectionAsync(int movieId, string userId)
+        {
+            var user = await context.Users
+                .Where(u => u.Id == userId)
+                .Include(u => u.UsersMovies)
+                .FirstOrDefaultAsync();
+
+            var movie = await context.Movies
+                .FirstOrDefaultAsync(x => x.Id == movieId);
+
+            if (user == null || movie == null)
+            {
+                throw new ArgumentException("Invalid userId or movieId provided.");
+            }
+
+            if (user.UsersMovies.Any(x => x.MovieId == movieId))
+            {
+                return;
+            }
+
+            user.UsersMovies.Add(new UserMovie()
+            {
+                UserId = userId,
+                MovieId = movieId
+            });
+
+            await context.SaveChangesAsync();
+        }
     }
 }
