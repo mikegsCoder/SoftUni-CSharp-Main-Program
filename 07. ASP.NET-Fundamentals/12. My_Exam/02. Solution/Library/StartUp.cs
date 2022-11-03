@@ -1,21 +1,38 @@
 using Library.Data;
+using Library.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
 builder.Services.AddDbContext<LibraryDbContext>(options =>
     options.UseSqlServer(connectionString));
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+// configure identity requirements:
+builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
+{
+    options.Password.RequiredLength = 5;
+    options.SignIn.RequireConfirmedAccount = false;
+    options.Password.RequireDigit = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+})
     .AddEntityFrameworkStores<LibraryDbContext>();
+
+// configure application cookie options:
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/User/Login";
+});
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
-
 
 if (app.Environment.IsDevelopment())
 {
