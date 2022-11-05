@@ -7,6 +7,11 @@ namespace Library.Controllers
     {
         public IActionResult Index()
         {
+            if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                return RedirectToAction("All", "Books"); // redirect logged in user
+            }
+
             return View();
         }
     }
