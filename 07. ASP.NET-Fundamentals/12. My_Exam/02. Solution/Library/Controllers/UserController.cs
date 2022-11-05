@@ -77,5 +77,31 @@ namespace Library.Controllers
 
             return View(model);
         }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await userManager.FindByNameAsync(model.UserName);
+
+            if (user != null)
+            {
+                var result = await signInManager.PasswordSignInAsync(user, model.Password, false, false);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("All", "Books"); // redirect logged in user
+                }
+            }
+
+            ModelState.AddModelError("", "Invalid login");
+
+            return View(model);
+        }
     }
 }
