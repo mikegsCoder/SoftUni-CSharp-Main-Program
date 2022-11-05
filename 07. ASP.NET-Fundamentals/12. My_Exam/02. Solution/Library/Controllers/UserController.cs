@@ -63,5 +63,19 @@ namespace Library.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Login()
+        {
+            if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                return RedirectToAction("All", "Books"); // redirect logged in user
+            }
+
+            var model = new LoginViewModel();
+
+            return View(model);
+        }
     }
 }
