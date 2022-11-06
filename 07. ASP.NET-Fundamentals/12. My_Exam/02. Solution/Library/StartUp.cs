@@ -1,5 +1,7 @@
+using Library.Contracts;
 using Library.Data;
 using Library.Data.Models;
+using Library.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -31,6 +33,9 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 builder.Services.AddControllersWithViews();
+
+// add services into IoC:
+builder.Services.AddScoped<IBookService, BookService>();
 
 var app = builder.Build();
 
