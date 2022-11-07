@@ -32,5 +32,33 @@ namespace Library.Services
                 })
                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<BookViewModel>> GetMineAsync(string userId)
+        {
+            var user = await context.ApplicationUsers
+               .Where(u => u.Id == userId)
+               .Include(u => u.ApplicationUsersBooks)
+               .ThenInclude(ub => ub.Book)
+               .ThenInclude(b => b.Category)
+               .FirstOrDefaultAsync();
+
+            if (user == null)
+            {
+                throw new ArgumentException("Invalid user Id is provided.");
+            }
+
+            return user.ApplicationUsersBooks
+                .Select(x => new BookViewModel()
+                {
+                    Id = x.BookId,
+                    Title = x.Book.Title,
+                    Author = x.Book.Author,
+                    ImageUrl = x.Book.ImageUrl,
+                    Description = x.Book.Description,
+                    Rating = x.Book.Rating.ToString("F2"),
+                    Category = x.Book.Category.Name
+                })
+                .ToList();
+        }
     }
 }
