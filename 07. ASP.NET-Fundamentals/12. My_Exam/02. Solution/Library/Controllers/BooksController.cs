@@ -23,5 +23,22 @@ namespace Library.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Mine()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            try
+            {
+                var model = await bookService.GetMineAsync(userId);
+
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
     }
 }
