@@ -55,5 +55,27 @@ namespace Library.Controllers
 
             return View(model);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(AddBookViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction(nameof(Add));
+            }
+
+            try
+            {
+                await bookService.AddBookAsync(model);
+
+                return RedirectToAction(nameof(All));
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+
+                return RedirectToAction(nameof(Add));
+            }
+        }
     }
 }
