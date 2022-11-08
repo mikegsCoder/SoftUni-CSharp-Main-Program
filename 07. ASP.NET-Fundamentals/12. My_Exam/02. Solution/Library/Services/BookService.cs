@@ -60,5 +60,29 @@ namespace Library.Services
                 })
                 .ToList();
         }
+
+        public async Task AddBookAsync(AddBookViewModel model)
+        {
+            decimal rating = 0;
+
+            if (!decimal.TryParse(model.Rating, NumberStyles.Float, CultureInfo.InvariantCulture, out rating)
+                || rating < 0.00M || rating > 10.00M)
+            {
+                throw new InvalidDataException("Invalid rating provided.");
+            }
+
+            var book = new Book()
+            {
+                Title = model.Title,
+                Author = model.Author,
+                ImageUrl = model.ImageUrl,
+                Description = model.Description,
+                Rating = rating,
+                CategoryId = model.CategoryId
+            };
+
+            await context.Books.AddAsync(book);
+            await context.SaveChangesAsync();
+        }
     }
 }

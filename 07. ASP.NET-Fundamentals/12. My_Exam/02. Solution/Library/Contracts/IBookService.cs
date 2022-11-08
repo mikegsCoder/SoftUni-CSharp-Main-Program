@@ -7,5 +7,7 @@ namespace Library.Contracts
         Task<IEnumerable<BookViewModel>> GetAllAsync();
 
         Task<IEnumerable<BookViewModel>> GetMineAsync(string userId);
+
+        Task AddBookAsync(AddBookViewModel model);
     }
 }
