@@ -10,10 +10,14 @@ namespace Library.Controllers
     public class BooksController : Controller
     {
         private readonly IBookService bookService;
+        private readonly ICategoryService categoryService;
 
-        public BooksController(IBookService _bookService)
+        public BooksController(
+            IBookService _bookService,
+            ICategoryService _categoryService)
         {
             bookService = _bookService;
+            categoryService = _categoryService;
         }
 
         [HttpGet]

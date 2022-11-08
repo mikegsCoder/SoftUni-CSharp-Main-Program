@@ -36,6 +36,7 @@ builder.Services.AddControllersWithViews();
 
 // add services into IoC:
 builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 var app = builder.Build();
 
