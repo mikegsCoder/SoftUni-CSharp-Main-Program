@@ -40,5 +40,16 @@ namespace Library.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Add()
+        {
+            var model = new AddBookViewModel()
+            {
+                Categories = await categoryService.GetCategoriesAsync()
+            };
+
+            return View(model);
+        }
     }
 }
