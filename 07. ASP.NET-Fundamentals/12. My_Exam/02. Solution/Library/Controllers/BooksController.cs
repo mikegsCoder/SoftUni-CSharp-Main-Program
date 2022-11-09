@@ -93,5 +93,21 @@ namespace Library.Controllers
 
             return RedirectToAction(nameof(All));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveFromCollection(int bookId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            try
+            {
+                await bookService.RemoveFromCollectionAsync(bookId, userId);
+            }
+            catch (Exception)
+            {
+            }
+
+            return RedirectToAction(nameof(Mine));
+        }
     }
 }
