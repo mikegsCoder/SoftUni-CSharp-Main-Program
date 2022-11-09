@@ -113,5 +113,30 @@ namespace Library.Services
 
             await context.SaveChangesAsync();
         }
+
+        public async Task RemoveFromCollectionAsync(int bookId, string userId)
+        {
+            var user = await context.ApplicationUsers
+                .Where(u => u.Id == userId)
+                .Include(u => u.ApplicationUsersBooks)
+                .FirstOrDefaultAsync();
+
+            if (user == null)
+            {
+                throw new ArgumentNullException("User does not exist.");
+            }
+
+            var toRemove = user.ApplicationUsersBooks
+                .FirstOrDefault(ub => ub.BookId == bookId);
+
+            if (toRemove == null)
+            {
+                return;
+            }
+
+            user.ApplicationUsersBooks.Remove(toRemove);
+
+            await context.SaveChangesAsync();
+        }
     }
 }
