@@ -9,5 +9,7 @@ namespace Library.Contracts
         Task<IEnumerable<BookViewModel>> GetMineAsync(string userId);
 
         Task AddBookAsync(AddBookViewModel model);
+
+        Task AddToCollectionAsync(int bookId, string userId);
     }
 }

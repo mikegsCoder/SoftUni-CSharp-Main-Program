@@ -84,5 +84,34 @@ namespace Library.Services
             await context.Books.AddAsync(book);
             await context.SaveChangesAsync();
         }
+
+        public async Task AddToCollectionAsync(int bookId, string userId)
+        {
+            var user = await context.ApplicationUsers
+                .Where(u => u.Id == userId)
+                .Include(u => u.ApplicationUsersBooks)
+                .FirstOrDefaultAsync();
+
+            var book = await context.Books
+                .FirstOrDefaultAsync(m => m.Id == bookId);
+
+            if (user == null || book == null)
+            {
+                throw new ArgumentNullException("User or movie does not exist.");
+            }
+
+            if (user.ApplicationUsersBooks.Any(x => x.BookId == bookId))
+            {
+                return;
+            }
+
+            user.ApplicationUsersBooks.Add(new ApplicationUserBook()
+            {
+                ApplicationUserId = userId,
+                BookId = bookId,
+            });
+
+            await context.SaveChangesAsync();
+        }
     }
 }
