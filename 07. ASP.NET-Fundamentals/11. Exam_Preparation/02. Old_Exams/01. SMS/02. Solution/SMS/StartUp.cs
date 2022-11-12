@@ -6,6 +6,7 @@
     using MyWebServer.Controllers;
     using MyWebServer.Results.Views;
     using SMS.Data;
+    using SMS.Data.Common;
 
     public class StartUp
     {
@@ -16,7 +17,8 @@
                     .MapControllers())
                 .WithServices(services => services
                     .Add<SMSDbContext>()
-                    .Add<IViewEngine, CompilationViewEngine>())
+                    .Add<IViewEngine, CompilationViewEngine>()
+                    .Add<IRepository, Repository>())
                     .WithConfiguration<SMSDbContext>(context => context
                         .Database.Migrate())
                 .Start();
