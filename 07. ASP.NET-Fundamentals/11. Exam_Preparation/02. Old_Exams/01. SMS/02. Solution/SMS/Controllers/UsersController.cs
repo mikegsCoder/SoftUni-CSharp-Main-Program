@@ -31,5 +31,23 @@ namespace SMS.Controllers
 
             return View();
         }
+
+        [HttpPost]
+        public HttpResponse Register(RegisterViewModel user)
+        {
+            var errors = userService.Register(user);
+
+            if (errors.Any())
+            {
+                ErrorViewModel model = new ErrorViewModel()
+                {
+                    ErrorMessage = String.Join(", ", errors)
+                };
+
+                return View(model, "/Error");
+            }
+
+            return Redirect("/Users/Login");
+        }
     }
 }
