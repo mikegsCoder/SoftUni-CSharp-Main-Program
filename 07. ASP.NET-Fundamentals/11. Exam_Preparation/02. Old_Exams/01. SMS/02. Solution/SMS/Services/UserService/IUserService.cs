@@ -11,5 +11,7 @@ namespace SMS.Services.UserService
     public interface IUserService
     {
         ICollection<string> Register(RegisterViewModel model);
+
+        string Login(LoginViewModel model);
     }
 }

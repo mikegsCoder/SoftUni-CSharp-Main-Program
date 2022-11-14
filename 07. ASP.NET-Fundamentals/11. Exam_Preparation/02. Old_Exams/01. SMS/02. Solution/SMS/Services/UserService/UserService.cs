@@ -70,6 +70,19 @@ namespace SMS.Services.UserService
             return errors;
         }
 
+        public string Login(LoginViewModel model)
+        {
+            var hashedPassword = this.Hash(model.Password);
+
+            var userId = this.repository
+                .All<User>()
+                .Where(u => u.Username == model.Username && u.Password == hashedPassword)
+                .Select(u => u.Id)
+                .FirstOrDefault();
+
+            return userId;
+        }
+
         private string Hash(string password)
         {
             if (string.IsNullOrWhiteSpace(password))
