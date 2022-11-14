@@ -7,6 +7,8 @@
     using MyWebServer.Results.Views;
     using SMS.Data;
     using SMS.Data.Common;
+    using SMS.Services.UserService;
+    using SMS.Services.ValidationService;
 
     public class StartUp
     {
@@ -18,7 +20,9 @@
                 .WithServices(services => services
                     .Add<SMSDbContext>()
                     .Add<IViewEngine, CompilationViewEngine>()
-                    .Add<IRepository, Repository>())
+                    .Add<IRepository, Repository>()
+                    .Add<IValidationService, ValidationService>()
+                    .Add<IUserService, UserService>())
                     .WithConfiguration<SMSDbContext>(context => context
                         .Database.Migrate())
                 .Start();
