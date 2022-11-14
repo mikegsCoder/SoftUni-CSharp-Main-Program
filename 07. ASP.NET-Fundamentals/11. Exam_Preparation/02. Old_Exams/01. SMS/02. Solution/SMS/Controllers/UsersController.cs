@@ -32,6 +32,21 @@ namespace SMS.Controllers
             return View();
         }
 
+        [HttpPost]
+        public HttpResponse Login(LoginViewModel user)
+        {
+            var userId = userService.Login(user);
+
+            if (userId == null)
+            {
+                return Redirect("/Users/Login");
+            }
+
+            SignIn(userId);
+
+            return this.Redirect("/Home/Index");
+        }
+
         public HttpResponse Register()
         {
             if (this.User.IsAuthenticated)
