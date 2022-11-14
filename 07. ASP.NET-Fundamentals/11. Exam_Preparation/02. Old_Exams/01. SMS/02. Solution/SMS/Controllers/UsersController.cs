@@ -22,6 +22,16 @@ namespace SMS.Controllers
             userService = _userService;
         }
 
+        public HttpResponse Login()
+        {
+            if (this.User.IsAuthenticated)
+            {
+                return Redirect("/Trips/All");
+            }
+
+            return View();
+        }
+
         public HttpResponse Register()
         {
             if (this.User.IsAuthenticated)
