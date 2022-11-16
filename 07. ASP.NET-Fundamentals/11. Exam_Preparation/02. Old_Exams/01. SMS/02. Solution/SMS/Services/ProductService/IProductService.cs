@@ -10,5 +10,7 @@ namespace SMS.Services.ProductService
     public interface IProductService
     {
         ICollection<string> Create(CreateProductViewModel model);
+
+        IEnumerable<ProductViewModel> GetProducts();
     }
 }

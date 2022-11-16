@@ -26,6 +26,20 @@ namespace SMS.Services.ProductService
             validationService = _validationService;
         }
 
+        public IEnumerable<ProductViewModel> GetProducts()
+        {
+            var products = repo.All<Product>()
+                .Select(p => new ProductViewModel()
+                {
+                    ProductId = p.Id,
+                    ProductName = p.Name,
+                    ProductPrice = p.Price.ToString("F2")
+                })
+                .ToList();
+
+            return products;
+        }
+
         public ICollection<string> Create(CreateProductViewModel model)
         {
             var errors = new List<string>();
