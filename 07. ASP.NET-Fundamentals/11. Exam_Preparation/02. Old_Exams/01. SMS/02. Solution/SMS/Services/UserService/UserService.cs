@@ -102,5 +102,13 @@ namespace SMS.Services.UserService
                 return builder.ToString();
             }
         }
+
+        public string GetUsername(string userId)
+        {
+            return repository.All<User>()
+                .Where(u => u.Id == userId)
+                .FirstOrDefault()
+                .Username;
+        }
     }
 }

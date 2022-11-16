@@ -13,5 +13,7 @@ namespace SMS.Services.UserService
         ICollection<string> Register(RegisterViewModel model);
 
         string Login(LoginViewModel model);
+
+        string GetUsername(string userId);
     }
 }
