@@ -7,6 +7,7 @@
     using MyWebServer.Results.Views;
     using SMS.Data;
     using SMS.Data.Common;
+    using SMS.Services.CartService;
     using SMS.Services.ProductService;
     using SMS.Services.UserService;
     using SMS.Services.ValidationService;
@@ -24,7 +25,8 @@
                     .Add<IRepository, Repository>()
                     .Add<IValidationService, ValidationService>()
                     .Add<IUserService, UserService>()
-                    .Add<IProductService, ProductService>())
+                    .Add<IProductService, ProductService>()
+                    .Add<ICartService, CartService>())
                     .WithConfiguration<SMSDbContext>(context => context
                         .Database.Migrate())
                 .Start();
