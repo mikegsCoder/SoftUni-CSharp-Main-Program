@@ -1,15 +1,11 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using SMS.Data.Common;
+﻿using SMS.Data.Common;
 using SMS.Data.Models;
 using SMS.Services.ValidationService;
 using SMS.ViewModels.ProductViewModels;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SMS.Services.ProductService
 {

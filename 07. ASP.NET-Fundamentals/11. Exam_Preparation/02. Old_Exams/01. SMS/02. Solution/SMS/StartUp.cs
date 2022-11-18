@@ -1,17 +1,17 @@
-﻿namespace SMS
-{
-    using System.Threading.Tasks;
-    using Microsoft.EntityFrameworkCore;
-    using MyWebServer;
-    using MyWebServer.Controllers;
-    using MyWebServer.Results.Views;
-    using SMS.Data;
-    using SMS.Data.Common;
-    using SMS.Services.CartService;
-    using SMS.Services.ProductService;
-    using SMS.Services.UserService;
-    using SMS.Services.ValidationService;
+﻿using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using MyWebServer;
+using MyWebServer.Controllers;
+using MyWebServer.Results.Views;
+using SMS.Data;
+using SMS.Data.Common;
+using SMS.Services.CartService;
+using SMS.Services.ProductService;
+using SMS.Services.UserService;
+using SMS.Services.ValidationService;
 
+namespace SMS
+{
     public class StartUp
     {
         public static async Task Main()

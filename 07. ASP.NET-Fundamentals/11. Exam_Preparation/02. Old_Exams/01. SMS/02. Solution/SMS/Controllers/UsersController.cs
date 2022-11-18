@@ -4,11 +4,7 @@ using SMS.Services.UserService;
 using SMS.ViewModels;
 using SMS.ViewModels.UserViewModels;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SMS.Controllers
 {

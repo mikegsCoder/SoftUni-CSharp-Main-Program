@@ -1,10 +1,5 @@
-﻿using SMS.Data.Models;
-using SMS.ViewModels.UserViewModels;
-using System;
+﻿using SMS.ViewModels.UserViewModels;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SMS.Services.UserService
 {

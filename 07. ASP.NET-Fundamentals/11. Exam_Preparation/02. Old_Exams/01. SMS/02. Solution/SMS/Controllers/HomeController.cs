@@ -1,11 +1,11 @@
-﻿namespace SMS.Controllers
-{
-    using MyWebServer.Controllers;
-    using MyWebServer.Http;
-    using SMS.Services.ProductService;
-    using SMS.Services.UserService;
-    using SMS.ViewModels.ProductViewModels;
+﻿using MyWebServer.Controllers;
+using MyWebServer.Http;
+using SMS.Services.ProductService;
+using SMS.Services.UserService;
+using SMS.ViewModels.ProductViewModels;
 
+namespace SMS.Controllers
+{
     public class HomeController : Controller
     {
         private readonly IUserService userService;
