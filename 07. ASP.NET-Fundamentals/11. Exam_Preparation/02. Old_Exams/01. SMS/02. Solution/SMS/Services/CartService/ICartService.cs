@@ -11,5 +11,7 @@ namespace SMS.Services.CartService
     public interface ICartService
     {
         CartAllProductsViewModel AddProduct(string productId, string userId);
+
+        CartAllProductsViewModel GetProducts(string userId);
     }
 }

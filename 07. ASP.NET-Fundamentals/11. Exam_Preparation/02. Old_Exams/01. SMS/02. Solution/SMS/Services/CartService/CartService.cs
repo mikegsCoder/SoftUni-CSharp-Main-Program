@@ -53,5 +53,28 @@ namespace SMS.Services.CartService
 
             return model;
         }
+
+        public CartAllProductsViewModel GetProducts(string userId)
+        {
+            var user = repo.All<User>()
+               .Where(u => u.Id == userId)
+               .Include(u => u.Cart)
+               .ThenInclude(c => c.Products)
+               .FirstOrDefault();
+
+            CartAllProductsViewModel model = new CartAllProductsViewModel()
+            {
+                Products = user
+                .Cart
+                .Products
+                .Select(p => new CartProductViewModel()
+                {
+                    ProductName = p.Name,
+                    ProductPrice = p.Price.ToString("F2")
+                })
+            };
+
+            return model;
+        }
     }
 }
