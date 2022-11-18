@@ -13,5 +13,7 @@ namespace SMS.Services.CartService
         CartAllProductsViewModel AddProduct(string productId, string userId);
 
         CartAllProductsViewModel GetProducts(string userId);
+
+        void BuyProducts(string userId);
     }
 }

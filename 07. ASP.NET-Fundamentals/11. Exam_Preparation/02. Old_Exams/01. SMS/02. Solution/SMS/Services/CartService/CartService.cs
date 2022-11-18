@@ -76,5 +76,18 @@ namespace SMS.Services.CartService
 
             return model;
         }
+
+        public void BuyProducts(string userId)
+        {
+            var user = repo.All<User>()
+                .Where(u => u.Id == userId)
+                .Include(u => u.Cart)
+                .ThenInclude(c => c.Products)
+                .FirstOrDefault();
+
+            user.Cart.Products.Clear();
+
+            repo.SaveChanges();
+        }
     }
 }
