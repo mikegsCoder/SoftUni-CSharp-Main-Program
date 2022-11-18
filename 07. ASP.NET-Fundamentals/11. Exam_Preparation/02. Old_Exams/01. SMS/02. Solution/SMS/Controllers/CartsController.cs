@@ -20,5 +20,13 @@ namespace SMS.Controllers
 
             return View(products, "/Carts/Details");
         }
+
+        [Authorize]
+        public HttpResponse Details(string productId)
+        {
+            var products = cartService.GetProducts(User.Id);
+
+            return View(products);
+        }
     }
 }
