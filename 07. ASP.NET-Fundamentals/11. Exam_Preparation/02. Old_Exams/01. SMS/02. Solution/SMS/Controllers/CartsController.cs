@@ -28,5 +28,13 @@ namespace SMS.Controllers
 
             return View(products);
         }
+
+        [Authorize]
+        public HttpResponse Buy()
+        {
+            cartService.BuyProducts(User.Id);
+
+            return Redirect("/");
+        }
     }
 }
