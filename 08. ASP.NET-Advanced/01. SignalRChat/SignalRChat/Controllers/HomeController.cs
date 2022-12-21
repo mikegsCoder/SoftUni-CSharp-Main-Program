@@ -13,7 +13,12 @@ namespace SignalRChat.Controllers
             _logger = logger;
         }
 
-         public IActionResult Privacy()
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Privacy()
         {
             return View();
         }
