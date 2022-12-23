@@ -18,6 +18,36 @@ namespace AspNetCoreMiddleWareDemo
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.Map("/softuni", app =>
+            {
+                app.UseWelcomePage();
+            });
+
+            app.Run(async (request) =>
+            {
+                await request.Response.WriteAsync("I am the one and only!");
+            });
+
+            app.Use(async (context, next) =>
+            {
+                await context.Response.WriteAsync("1");
+                if (DateTime.Now.Second % 2 == 0)
+                {
+                    await next();
+                }
+                await context.Response.WriteAsync("6");
+            });
+            app.Use(async (context, next) =>
+            {
+                await context.Response.WriteAsync("2");
+                await next();
+                await context.Response.WriteAsync("5");
+            });
+            app.Use(async (context, next) =>
+            {
+                await context.Response.WriteAsync("2");
+                await context.Response.WriteAsync("4");
+            });
         }
     }
 }
