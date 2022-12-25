@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSRF-PasswordApp", "CSRF-Pa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SQLInjection-LoginApp", "SQLInjection-LoginApp\SQLInjection-LoginApp.csproj", "{88305F63-EB2D-46BA-99BE-8DCD2A6AACF5}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XSSDemo-ChatApp", "XSSDemo-ChatApp\XSSDemo-ChatApp.csproj", "{3FC0DADB-E518-4402-AA3A-79EE9F6D3C5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{88305F63-EB2D-46BA-99BE-8DCD2A6AACF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88305F63-EB2D-46BA-99BE-8DCD2A6AACF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88305F63-EB2D-46BA-99BE-8DCD2A6AACF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FC0DADB-E518-4402-AA3A-79EE9F6D3C5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FC0DADB-E518-4402-AA3A-79EE9F6D3C5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FC0DADB-E518-4402-AA3A-79EE9F6D3C5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FC0DADB-E518-4402-AA3A-79EE9F6D3C5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
