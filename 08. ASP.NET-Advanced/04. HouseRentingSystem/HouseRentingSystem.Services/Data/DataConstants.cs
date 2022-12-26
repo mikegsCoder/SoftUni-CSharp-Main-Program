@@ -27,6 +27,13 @@
             public const int NameMaxLength = 50;
         }
 
+        public class Agent
+        {
+            //Phone number
+            public const int PhoneNumberMaxLength = 15;
+            public const int PhoneNumberMinLength = 7;
+        }
+
         public class User
         {
             //First name
