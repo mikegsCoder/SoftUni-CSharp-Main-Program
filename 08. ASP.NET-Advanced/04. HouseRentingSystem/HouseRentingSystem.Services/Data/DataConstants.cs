@@ -2,6 +2,25 @@
 {
     public class DataConstants
     {
+        public class House
+        {
+            //Title
+            public const int TitleMaxLength = 50;
+            public const int TitleMinLength = 10;
+
+            //Address
+            public const int AddressMaxLength = 150;
+            public const int AddressMinLength = 30;
+
+            //Description
+            public const int DescriptionMaxLength = 500;
+            public const int DescriptionMinLength = 50;
+
+            //Price
+            public const int MaxPricePerMonth = 20000;
+
+        }
+
         public class Category
         {
             //Name
