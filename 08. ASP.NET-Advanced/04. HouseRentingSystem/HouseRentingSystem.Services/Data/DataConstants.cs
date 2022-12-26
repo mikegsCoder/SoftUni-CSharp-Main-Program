@@ -2,6 +2,12 @@
 {
     public class DataConstants
     {
+        public class Category
+        {
+            //Name
+            public const int NameMaxLength = 50;
+        }
+
         public class User
         {
             //First name
