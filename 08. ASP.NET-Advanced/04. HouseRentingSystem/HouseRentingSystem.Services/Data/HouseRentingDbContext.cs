@@ -54,6 +54,11 @@ namespace HouseRentingSystem.Services.Data
                     .HasData(this.AgentUser,
                     this.GuestUser,
                     this.AdminUser);
+
+            SeedAgent();
+            builder.Entity<Agent>()
+                    .HasData(this.Agent,
+                    this.AdminAgent);
         }
 
         private void SeedUsers()
@@ -101,6 +106,23 @@ namespace HouseRentingSystem.Services.Data
 
             this.AdminUser.PasswordHash =
                 hasher.HashPassword(this.AgentUser, "admin123");
+        }
+
+        private void SeedAgent()
+        {
+            this.Agent = new Agent()
+            {
+                Id = 1,
+                PhoneNumber = "+359888888888",
+                UserId = this.AgentUser.Id
+            };
+
+            this.AdminAgent = new Agent()
+            {
+                Id = 6,
+                PhoneNumber = "+359123456789",
+                UserId = this.AdminUser.Id
+            };
         }
     }
 }
