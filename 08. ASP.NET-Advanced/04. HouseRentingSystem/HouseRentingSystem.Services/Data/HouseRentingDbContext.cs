@@ -59,6 +59,12 @@ namespace HouseRentingSystem.Services.Data
             builder.Entity<Agent>()
                     .HasData(this.Agent,
                     this.AdminAgent);
+
+            SeedCategories();
+            builder.Entity<Category>()
+                .HasData(this.CottageCategory,
+                        this.SingleCategory,
+                        this.DuplexCategory);
         }
 
         private void SeedUsers()
@@ -122,6 +128,27 @@ namespace HouseRentingSystem.Services.Data
                 Id = 6,
                 PhoneNumber = "+359123456789",
                 UserId = this.AdminUser.Id
+            };
+        }
+
+        private void SeedCategories()
+        {
+            this.CottageCategory = new Category()
+            {
+                Id = 1,
+                Name = "Cottage"
+            };
+
+            this.SingleCategory = new Category()
+            {
+                Id = 2,
+                Name = "Single-Family"
+            };
+
+            this.DuplexCategory = new Category()
+            {
+                Id = 3,
+                Name = "Duplex"
             };
         }
     }
