@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using HouseRentingSystem.Services.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
+using static HouseRentingSystem.Services.Data.Constants;
+
 namespace HouseRentingSystem.Services.Data
 {
-    public class HouseRentingDbContext : IdentityDbContext<IdentityUser>
+    public class HouseRentingDbContext : IdentityDbContext<User>
     {
         public HouseRentingDbContext
             (DbContextOptions<HouseRentingDbContext> options)
@@ -12,6 +15,10 @@ namespace HouseRentingSystem.Services.Data
         {
             this.Database.Migrate();
         }
+
+        public DbSet<House> Houses { get; init; }
+        public DbSet<Category> Categories { get; init; }
+        public DbSet<Agent> Agents { get; init; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
