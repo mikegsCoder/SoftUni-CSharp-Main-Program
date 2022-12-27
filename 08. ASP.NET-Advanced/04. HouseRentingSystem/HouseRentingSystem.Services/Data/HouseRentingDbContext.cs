@@ -36,11 +36,11 @@ namespace HouseRentingSystem.Services.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder
-               .Entity<House>()
-               .HasOne(h => h.Category)
-               .WithMany(c => c.Houses)
-               .HasForeignKey(h => h.CategoryId)
-               .OnDelete(DeleteBehavior.Restrict);
+                .Entity<House>()
+                .HasOne(h => h.Category)
+                .WithMany(c => c.Houses)
+                .HasForeignKey(h => h.CategoryId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder
                .Entity<House>()
@@ -51,7 +51,7 @@ namespace HouseRentingSystem.Services.Data
 
             SeedUsers();
             builder.Entity<User>()
-                    .HasData(this.AgentUser,
+                    .HasData(this.AgentUser, 
                     this.GuestUser,
                     this.AdminUser);
 
