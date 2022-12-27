@@ -48,6 +48,59 @@ namespace HouseRentingSystem.Services.Data
                .WithMany()
                .HasForeignKey(h => h.AgentId)
                .OnDelete(DeleteBehavior.Restrict);
+
+            SeedUsers();
+            builder.Entity<User>()
+                    .HasData(this.AgentUser,
+                    this.GuestUser,
+                    this.AdminUser);
+        }
+
+        private void SeedUsers()
+        {
+            var hasher = new PasswordHasher<User>();
+
+            this.AgentUser = new User()
+            {
+                Id = "dea12856-c198-4129-b3f3-b893d8395082",
+                UserName = "agent@mail.com",
+                NormalizedUserName = "agent@mail.com",
+                Email = "agent@mail.com",
+                NormalizedEmail = "agent@mail.com",
+                FirstName = "Linda",
+                LastName = "Michaels"
+            };
+
+            this.AgentUser.PasswordHash =
+                hasher.HashPassword(this.AgentUser, "agent123");
+
+            this.GuestUser = new User()
+            {
+                Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
+                UserName = "guest@mail.com",
+                NormalizedUserName = "guest@mail.com",
+                Email = "guest@mail.com",
+                NormalizedEmail = "guest@mail.com",
+                FirstName = "Teodor",
+                LastName = "Lesly"
+            };
+
+            this.GuestUser.PasswordHash =
+                hasher.HashPassword(this.AgentUser, "guest123");
+
+            this.AdminUser = new User()
+            {
+                Id = "bcb4f072-ecca-43c9-ab26-c060c6f364e4",
+                Email = AdminEmail,
+                NormalizedEmail = AdminEmail,
+                UserName = AdminEmail,
+                NormalizedUserName = AdminEmail,
+                FirstName = "Great",
+                LastName = "Admin"
+            };
+
+            this.AdminUser.PasswordHash =
+                hasher.HashPassword(this.AgentUser, "admin123");
         }
     }
 }
