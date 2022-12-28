@@ -1,22 +1,24 @@
 ﻿using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using HouseRentingSystem.Services.Data.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
+using static HouseRentingSystem.Services.Data.DataConstants.User;
 
 namespace HouseRentingSystem.Web.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> signInManager;
-        private readonly UserManager<IdentityUser> userManager;
+        private readonly SignInManager<User> signInManager;
+        private readonly UserManager<User> userManager;
 
         public RegisterModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            UserManager<User> userManager,
+            SignInManager<User> signInManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
@@ -36,10 +38,14 @@ namespace HouseRentingSystem.Web.Areas.Identity.Pages.Account
 
             [Required]
             [Display(Name = "First Name")]
+            [StringLength(UserFirstNameMaxLength, 
+                MinimumLength = UserFirstNameMinLength)]
             public string FirstName { get; set; }
 
             [Required]
             [Display(Name = "Last Name")]
+            [StringLength(UserLastNameMaxLength,
+                MinimumLength = UserLastNameMinLength)]
             public string LastName { get; set; }
 
             [Required]
@@ -68,10 +74,12 @@ namespace HouseRentingSystem.Web.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser
+                var user = new User
                 {
                     UserName = Input.Email,
                     Email = Input.Email,
+                    FirstName = Input.FirstName,
+                    LastName = Input.LastName
                 };
 
                 var result = await this.userManager.CreateAsync(user, Input.Password);
