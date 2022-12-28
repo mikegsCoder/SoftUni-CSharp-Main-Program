@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using HouseRentingSystem.Services.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication;
@@ -13,9 +14,9 @@ namespace HouseRentingSystem.Web.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly SignInManager<User> signInManager;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager)
+        public LoginModel(SignInManager<User> signInManager)
             => this.signInManager = signInManager;
 
         [BindProperty]
