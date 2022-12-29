@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HouseRentingSystem.Services.Houses;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HouseRentingSystem.Web.Controllers
 {
