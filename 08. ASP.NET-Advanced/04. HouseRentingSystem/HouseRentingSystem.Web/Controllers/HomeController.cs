@@ -4,9 +4,14 @@ namespace HouseRentingSystem.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IHouseService houses;
+        public HomeController(IHouseService houses)
+            => this.houses = houses;
+
         public IActionResult Index()
         {
-            return View();
+            var houses = this.houses.LastThreeHouses();
+            return View(houses);
         }
 
         public IActionResult Error(int statusCode)
