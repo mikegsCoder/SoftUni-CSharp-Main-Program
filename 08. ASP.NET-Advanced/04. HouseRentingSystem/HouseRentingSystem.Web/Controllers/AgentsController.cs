@@ -26,6 +26,38 @@ namespace HouseRentingSystem.Web.Controllers
             return View();
         }
 
+        [Authorize]
+        [HttpPost]
+        public IActionResult Become(BecomeAgentFormModel model)
+        {
+            var userId = this.User.Id();
+
+            if (this.agents.ExistsById(userId))
+            {
+                return BadRequest();
+            }
+
+            if (this.agents.UserWithPhoneNumberExists(model.PhoneNumber))
+            {
+                ModelState.AddModelError(nameof(model.PhoneNumber),
+                    "Phone number already exists. Enter another one.");
+            }
+
+            if (this.agents.UserHasRents(userId))
+            {
+                ModelState.AddModelError("Error",
+                    "You should have no rents to become an agent!");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            this.agents.Create(userId, model.PhoneNumber);
+
+            return RedirectToAction(nameof(HousesController.All), "Houses");
+        }
     }
 }
 
