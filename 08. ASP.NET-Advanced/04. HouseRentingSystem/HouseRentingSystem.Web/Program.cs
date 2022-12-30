@@ -1,3 +1,4 @@
+using HouseRentingSystem.Services.Agents;
 using HouseRentingSystem.Services.Data;
 using HouseRentingSystem.Services.Data.Entities;
 using HouseRentingSystem.Services.Houses;
@@ -39,6 +40,7 @@ builder.Services.AddControllersWithViews(options =>
 });
 
 builder.Services.AddTransient<IHouseService, HouseService>();
+builder.Services.AddTransient<IAgentService, AgentService>();
 
 var app = builder.Build();
 
