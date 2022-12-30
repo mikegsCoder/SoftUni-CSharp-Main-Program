@@ -82,5 +82,40 @@ namespace HouseRentingSystem.Services.Houses
                   .Select(c => c.Name)
                   .Distinct()
                   .ToList();
+
+        public bool HasAgentWithId(int houseId, string currentUserId)
+        {
+            var house = this.data.Houses.Find(houseId);
+            var agent = this.data.Agents.FirstOrDefault(a => a.Id == house.AgentId);
+
+            if (agent == null)
+            {
+                return false;
+            }
+
+            if (agent.UserId != currentUserId)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool IsRentedByUserWithId(int houseId, string userId)
+        {
+            var house = this.data.Houses.Find(houseId);
+
+            if (house == null)
+            {
+                return false;
+            }
+
+            if (house.RenterId != userId)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }
