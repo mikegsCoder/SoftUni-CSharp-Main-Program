@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject IAgentService agents
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -31,6 +33,13 @@
                                 <a class="nav-link text-dark" asp-area=""
                                asp-controller="Houses" asp-action="Mine">My Houses</a>
                             </li>
+                            @if (this.agents.ExistsById(this.User.Id()))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area=""
+                                        asp-controller="Houses" asp-action="Add">Add Houses</a>
+                                </li>
+                            }
                         }
                     </ul>
                     <partial name="_LoginPartial" />
