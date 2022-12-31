@@ -1,11 +1,15 @@
-using HouseRentingSystem.Services.Agents;
+using HouseRentingSystem.Web.Infrastructure;
 using HouseRentingSystem.Services.Data;
 using HouseRentingSystem.Services.Data.Entities;
+using HouseRentingSystem.Services.Agents;
 using HouseRentingSystem.Services.Houses;
-using HouseRentingSystem.Web.Controllers;
+using HouseRentingSystem.Services.Statistics;
+using HouseRentingSystem.Services.Users;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using HouseRentingSystem.Web.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,11 +29,6 @@ builder.Services.AddDefaultIdentity<User>(options =>
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<HouseRentingDbContext>();
 
-builder.Services.AddControllersWithViews(options =>
-{
-    options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
-});
-
 builder.Services.AddAutoMapper(
     typeof(IHouseService).Assembly,
     typeof(HomeController).Assembly);
@@ -41,8 +40,12 @@ builder.Services.AddControllersWithViews(options =>
 
 builder.Services.AddTransient<IHouseService, HouseService>();
 builder.Services.AddTransient<IAgentService, AgentService>();
+builder.Services.AddTransient<IStatisticsService, StatisticsService>();
+builder.Services.AddTransient<IUserService, UserService>();
 
 var app = builder.Build();
+
+app.SeedAdmin();
 
 if (app.Environment.IsDevelopment())
 {
@@ -77,3 +80,4 @@ app.UseEndpoints(endpoints =>
 });
 
 app.Run();
+
