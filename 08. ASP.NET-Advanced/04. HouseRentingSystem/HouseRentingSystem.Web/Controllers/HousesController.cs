@@ -41,5 +41,26 @@ namespace HouseRentingSystem.Web.Controllers
 
             return View(query);
         }
+
+        [Authorize]
+        public IActionResult Mine()
+        {
+            IEnumerable<HouseServiceModel> myHouses = null;
+
+            var userId = this.User.Id();
+
+            if (this.agents.ExistsById(userId))
+            {
+                var currentAgentId = this.agents.GetAgentId(userId);
+
+                myHouses = this.houses.AllHousesByAgentId(currentAgentId);
+            }
+            else
+            {
+                myHouses = this.houses.AllHousesByUserId(userId);
+            }
+
+            return View(myHouses);
+        }
     }
 }
