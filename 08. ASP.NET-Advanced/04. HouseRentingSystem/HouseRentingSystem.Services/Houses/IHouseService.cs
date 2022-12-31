@@ -18,5 +18,9 @@ namespace HouseRentingSystem.Services.Houses
         bool HasAgentWithId(int houseId, string currentUserId);
 
         bool IsRentedByUserWithId(int houseId, string userId);
+
+        IEnumerable<HouseServiceModel> AllHousesByAgentId(int agentId);
+
+        IEnumerable<HouseServiceModel> AllHousesByUserId(string userId);
     }
 }

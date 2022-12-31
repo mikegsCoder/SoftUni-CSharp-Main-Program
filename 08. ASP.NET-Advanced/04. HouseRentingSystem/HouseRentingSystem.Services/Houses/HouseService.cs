@@ -117,5 +117,27 @@ namespace HouseRentingSystem.Services.Houses
 
             return true;
         }
+
+        public IEnumerable<HouseServiceModel> AllHousesByAgentId(int agentId)
+        {
+            var houses = this.data
+                  .Houses
+                  .Where(h => h.AgentId == agentId)
+                  .ProjectTo<HouseServiceModel>(this.mapper.ConfigurationProvider)
+                  .ToList();
+
+            return houses;
+        }
+
+        public IEnumerable<HouseServiceModel> AllHousesByUserId(string userId)
+        {
+            var houses = this.data
+                  .Houses
+                  .Where(h => h.RenterId == userId)
+                  .ProjectTo<HouseServiceModel>(this.mapper.ConfigurationProvider)
+                  .ToList();
+
+            return houses;
+        }
     }
 }
