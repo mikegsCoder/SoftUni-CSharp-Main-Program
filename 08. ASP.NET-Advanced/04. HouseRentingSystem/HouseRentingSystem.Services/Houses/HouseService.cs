@@ -166,5 +166,12 @@ namespace HouseRentingSystem.Services.Houses
 
             return houses;
         }
+
+        public IEnumerable<HouseCategoryServiceModel> AllCategories()
+           => this.data
+                  .Categories
+                  .ProjectTo<HouseCategoryServiceModel>
+                       (this.mapper.ConfigurationProvider)
+                  .ToList();
     }
 }

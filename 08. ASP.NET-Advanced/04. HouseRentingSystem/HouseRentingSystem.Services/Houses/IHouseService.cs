@@ -26,5 +26,7 @@ namespace HouseRentingSystem.Services.Houses
         bool Exists(int id);
 
         HouseDetailsServiceModel HouseDetailsById(int id);
+
+        IEnumerable<HouseCategoryServiceModel> AllCategories();
     }
 }
