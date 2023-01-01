@@ -6,23 +6,47 @@ using HouseRentingSystem.Services.Houses.Models;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using HouseRentingSystem.Services.Agents.Models;
+using HouseRentingSystem.Services.Users;
 
 namespace HouseRentingSystem.Services.Houses
 {
     public class HouseService : IHouseService
     {
         private readonly HouseRentingDbContext data;
+        private readonly IUserService users;
         private readonly IMapper mapper;
 
         public HouseService(HouseRentingDbContext data,
+            IUserService users,
             IMapper mapper)
         {
             this.data = data;
+            this.users = users;
             this.mapper = mapper;
         }
 
         public bool Exists(int id)
              => this.data.Houses.Any(h => h.Id == id);
+
+        public HouseDetailsServiceModel HouseDetailsById(int id)
+        {
+            var dbHouse = this.data
+                .Houses
+                .Include(h => h.Category)
+                .Include(h => h.Agent.User)
+                .Where(h => h.Id == id)
+                .FirstOrDefault();
+
+            var house = this.mapper.Map<HouseDetailsServiceModel>(dbHouse);
+
+            var agent = this.mapper.Map<AgentServiceModel>(dbHouse.Agent);
+            agent.FullName = this.users.UserFullName(dbHouse.Agent.UserId);
+
+            house.Agent = agent;
+
+            return house;
+        }
 
         public HouseQueryServiceModel All(
            string category = null,
