@@ -79,5 +79,19 @@ namespace HouseRentingSystem.Web.Controllers
 
             return View(houseModel);
         }
+
+        [Authorize]
+        public IActionResult Add()
+        {
+            if (!this.agents.ExistsById(this.User.Id()))
+            {
+                return RedirectToAction(nameof(AgentsController.Become), "Agents");
+            }
+
+            return View(new HouseFormModel
+            {
+                Categories = this.houses.AllCategories()
+            });
+        }
     }
 }
