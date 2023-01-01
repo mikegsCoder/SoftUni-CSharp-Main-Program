@@ -21,6 +21,9 @@ namespace HouseRentingSystem.Services.Houses
             this.mapper = mapper;
         }
 
+        public bool Exists(int id)
+             => this.data.Houses.Any(h => h.Id == id);
+
         public HouseQueryServiceModel All(
            string category = null,
            string searchTerm = null,
