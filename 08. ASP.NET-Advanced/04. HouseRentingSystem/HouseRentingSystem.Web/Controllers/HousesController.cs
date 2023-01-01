@@ -62,5 +62,22 @@ namespace HouseRentingSystem.Web.Controllers
 
             return View(myHouses);
         }
+
+        public IActionResult Details(int id, string information)
+        {
+            if (!this.houses.Exists(id))
+            {
+                return BadRequest();
+            }
+
+            var houseModel = this.houses.HouseDetailsById(id);
+
+            if (information != houseModel.GetInformation())
+            {
+                return BadRequest();
+            }
+
+            return View(houseModel);
+        }
     }
 }
