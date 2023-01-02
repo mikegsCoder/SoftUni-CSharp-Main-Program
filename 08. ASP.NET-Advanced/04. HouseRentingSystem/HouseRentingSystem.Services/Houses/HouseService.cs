@@ -173,5 +173,8 @@ namespace HouseRentingSystem.Services.Houses
                   .ProjectTo<HouseCategoryServiceModel>
                        (this.mapper.ConfigurationProvider)
                   .ToList();
+
+        public bool CategoryExists(int categoryId)
+            => this.data.Categories.Any(c => c.Id == categoryId);
     }
 }
