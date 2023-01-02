@@ -125,5 +125,30 @@ namespace HouseRentingSystem.Web.Controllers
             return RedirectToAction(nameof(Details),
                 new { id = newHouseId, information = model.GetInformation() });
         }
+
+        [Authorize]
+        public IActionResult Edit(int id)
+        {
+            if (!this.houses.Exists(id))
+            {
+                return BadRequest();
+            }
+
+            if (!this.houses.HasAgentWithId(id, this.User.Id())
+                && !this.User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
+            var house = this.houses.HouseDetailsById(id);
+
+            var houseCategoryId = this.houses.GetHouseCategoryId(house.Id);
+
+            var houseModel = this.mapper.Map<HouseFormModel>(house);
+            houseModel.CategoryId = houseCategoryId;
+            houseModel.Categories = this.houses.AllCategories();
+
+            return View(houseModel);
+        }
     }
 }
