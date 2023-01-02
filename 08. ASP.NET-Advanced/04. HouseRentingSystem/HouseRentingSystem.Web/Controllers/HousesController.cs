@@ -93,5 +93,37 @@ namespace HouseRentingSystem.Web.Controllers
                 Categories = this.houses.AllCategories()
             });
         }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult Add(HouseFormModel model)
+        {
+            if (!this.agents.ExistsById(this.User.Id()))
+            {
+                return RedirectToAction(nameof(AgentsController.Become), "Agents");
+            }
+
+            if (!this.houses.CategoryExists(model.CategoryId))
+            {
+                this.ModelState.AddModelError(nameof(model.CategoryId),
+                    "Category does not exist.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                model.Categories = this.houses.AllCategories();
+
+                return View(model);
+            }
+
+            var agentId = this.agents.GetAgentId(this.User.Id());
+
+            var newHouseId = this.houses.Create(model.Title, model.Address,
+                model.Description, model.ImageUrl, model.PricePerMonth,
+                model.CategoryId, agentId);
+
+            return RedirectToAction(nameof(Details),
+                new { id = newHouseId, information = model.GetInformation() });
+        }
     }
 }
