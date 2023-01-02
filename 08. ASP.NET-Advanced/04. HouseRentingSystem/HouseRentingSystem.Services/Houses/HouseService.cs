@@ -196,5 +196,8 @@ namespace HouseRentingSystem.Services.Houses
 
             return house.Id;
         }
+
+        public int GetHouseCategoryId(int houseId)
+            => this.data.Houses.Find(houseId).CategoryId;
     }
 }

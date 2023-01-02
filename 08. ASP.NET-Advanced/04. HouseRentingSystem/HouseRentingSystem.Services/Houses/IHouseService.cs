@@ -35,5 +35,6 @@ namespace HouseRentingSystem.Services.Houses
            string description, string imageUrl, decimal price,
            int categoryId, int agentId);
 
+        int GetHouseCategoryId(int houseId);
     }
 }
