@@ -39,5 +39,7 @@ namespace HouseRentingSystem.Services.Houses
 
         void Edit(int houseId, string title, string address,
             string description, string imageUrl, decimal price, int categoryId);
+
+        void Delete(int houseId);
     }
 }
