@@ -199,5 +199,20 @@ namespace HouseRentingSystem.Services.Houses
 
         public int GetHouseCategoryId(int houseId)
             => this.data.Houses.Find(houseId).CategoryId;
+
+        public void Edit(int houseId, string title, string address, string description,
+          string imageUrl, decimal price, int categoryId)
+        {
+            var house = this.data.Houses.Find(houseId);
+
+            house.Title = title;
+            house.Address = address;
+            house.Description = description;
+            house.ImageUrl = imageUrl;
+            house.PricePerMonth = price;
+            house.CategoryId = categoryId;
+
+            this.data.SaveChanges();
+        }
     }
 }

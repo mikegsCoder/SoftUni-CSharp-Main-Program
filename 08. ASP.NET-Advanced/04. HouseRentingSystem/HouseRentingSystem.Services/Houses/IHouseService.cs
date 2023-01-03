@@ -36,5 +36,8 @@ namespace HouseRentingSystem.Services.Houses
            int categoryId, int agentId);
 
         int GetHouseCategoryId(int houseId);
+
+        void Edit(int houseId, string title, string address,
+            string description, string imageUrl, decimal price, int categoryId);
     }
 }
