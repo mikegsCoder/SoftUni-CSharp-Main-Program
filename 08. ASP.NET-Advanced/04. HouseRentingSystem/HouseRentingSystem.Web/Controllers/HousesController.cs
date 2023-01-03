@@ -185,5 +185,26 @@ namespace HouseRentingSystem.Web.Controllers
             return RedirectToAction(nameof(Details),
                 new { id = id, information = model.GetInformation() });
         }
+
+        [Authorize]
+        public IActionResult Delete(int id)
+        {
+            if (!this.houses.Exists(id))
+            {
+                return BadRequest();
+            }
+
+            if (!this.houses.HasAgentWithId(id, this.User.Id())
+                && !this.User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
+            var house = this.houses.HouseDetailsById(id);
+
+            var model = this.mapper.Map<HouseDetailsViewModel>(house);
+
+            return View(model);
+        }
     }
 }
