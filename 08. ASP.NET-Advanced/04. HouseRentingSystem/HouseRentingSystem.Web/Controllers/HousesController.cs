@@ -206,5 +206,25 @@ namespace HouseRentingSystem.Web.Controllers
 
             return View(model);
         }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult Delete(HouseDetailsViewModel model)
+        {
+            if (!this.houses.Exists(model.Id))
+            {
+                return BadRequest();
+            }
+
+            if (!this.houses.HasAgentWithId(model.Id, this.User.Id())
+                && !this.User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
+            this.houses.Delete(model.Id);
+
+            return RedirectToAction(nameof(All));
+        }
     }
 }
