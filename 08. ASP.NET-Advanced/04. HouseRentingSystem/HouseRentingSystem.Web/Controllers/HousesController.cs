@@ -150,5 +150,40 @@ namespace HouseRentingSystem.Web.Controllers
 
             return View(houseModel);
         }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult Edit(int id, HouseFormModel model)
+        {
+            if (!this.houses.Exists(id))
+            {
+                return this.View();
+            }
+
+            if (!this.houses.HasAgentWithId(id, this.User.Id())
+                && !this.User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
+            if (!this.houses.CategoryExists(model.CategoryId))
+            {
+                this.ModelState.AddModelError(nameof(model.CategoryId),
+                    "Category does not exist.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                model.Categories = this.houses.AllCategories();
+
+                return View(model);
+            }
+
+            this.houses.Edit(id, model.Title, model.Address, model.Description,
+                model.ImageUrl, model.PricePerMonth, model.CategoryId);
+
+            return RedirectToAction(nameof(Details),
+                new { id = id, information = model.GetInformation() });
+        }
     }
 }
