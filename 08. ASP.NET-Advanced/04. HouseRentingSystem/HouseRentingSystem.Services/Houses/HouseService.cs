@@ -233,5 +233,13 @@ namespace HouseRentingSystem.Services.Houses
             house.RenterId = userId;
             this.data.SaveChanges();
         }
+
+        public void Leave(int houseId)
+        {
+            var house = this.data.Houses.Find(houseId);
+
+            house.RenterId = null;
+            this.data.SaveChanges();
+        }
     }
 }
