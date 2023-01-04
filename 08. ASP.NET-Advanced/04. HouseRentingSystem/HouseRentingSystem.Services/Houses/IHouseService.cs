@@ -41,5 +41,7 @@ namespace HouseRentingSystem.Services.Houses
             string description, string imageUrl, decimal price, int categoryId);
 
         void Delete(int houseId);
+
+        bool IsRented(int id);
     }
 }

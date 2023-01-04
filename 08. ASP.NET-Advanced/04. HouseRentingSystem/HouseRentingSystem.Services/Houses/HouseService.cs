@@ -222,5 +222,8 @@ namespace HouseRentingSystem.Services.Houses
             this.data.Remove(house);
             this.data.SaveChanges();
         }
+
+        public bool IsRented(int id)
+            => this.data.Houses.Find(id).RenterId != null;
     }
 }
