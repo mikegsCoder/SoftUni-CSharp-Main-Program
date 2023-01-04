@@ -251,5 +251,25 @@ namespace HouseRentingSystem.Web.Controllers
 
             return RedirectToAction(nameof(Mine));
         }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult Leave(int id)
+        {
+            if (!this.houses.Exists(id) ||
+                !this.houses.IsRented(id))
+            {
+                return BadRequest();
+            }
+
+            if (!this.houses.IsRentedByUserWithId(id, this.User.Id()))
+            {
+                return Unauthorized();
+            }
+
+            this.houses.Leave(id);
+
+            return RedirectToAction(nameof(Mine));
+        }
     }
 }
