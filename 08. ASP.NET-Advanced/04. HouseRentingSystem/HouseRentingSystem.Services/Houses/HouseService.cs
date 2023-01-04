@@ -225,5 +225,13 @@ namespace HouseRentingSystem.Services.Houses
 
         public bool IsRented(int id)
             => this.data.Houses.Find(id).RenterId != null;
+
+        public void Rent(int houseId, string userId)
+        {
+            var house = this.data.Houses.Find(houseId);
+
+            house.RenterId = userId;
+            this.data.SaveChanges();
+        }
     }
 }

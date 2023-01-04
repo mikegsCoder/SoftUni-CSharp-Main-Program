@@ -43,5 +43,7 @@ namespace HouseRentingSystem.Services.Houses
         void Delete(int houseId);
 
         bool IsRented(int id);
+
+        void Rent(int houseId, string userId);
     }
 }
