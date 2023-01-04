@@ -18,7 +18,6 @@
 
             //Price
             public const int MaxPricePerMonth = 20000;
-
         }
 
         public class Category

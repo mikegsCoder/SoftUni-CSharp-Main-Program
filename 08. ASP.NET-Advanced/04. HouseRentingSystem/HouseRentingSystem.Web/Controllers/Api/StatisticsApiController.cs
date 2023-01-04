@@ -18,4 +18,3 @@ namespace HouseRentingSystem.Web.Controllers.Api
             => this.statistics.Total();
     }
 }
-

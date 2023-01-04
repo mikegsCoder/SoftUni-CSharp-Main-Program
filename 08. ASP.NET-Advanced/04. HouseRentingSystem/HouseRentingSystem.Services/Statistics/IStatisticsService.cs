@@ -7,5 +7,3 @@ namespace HouseRentingSystem.Services.Statistics
         StatisticsServiceModel Total();
     }
 }
-
-

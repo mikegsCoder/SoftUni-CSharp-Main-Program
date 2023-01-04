@@ -60,4 +60,3 @@ namespace HouseRentingSystem.Web.Controllers
         }
     }
 }
-

@@ -11,7 +11,6 @@ namespace HouseRentingSystem.Services.Data
     {
         private User AdminUser { get; set; }
         private Agent AdminAgent { get; set; }
-
         private User AgentUser { get; set; }
         private User GuestUser { get; set; }
         private Agent Agent { get; set; }
@@ -202,5 +201,3 @@ namespace HouseRentingSystem.Services.Data
         }
     }
 }
-
-

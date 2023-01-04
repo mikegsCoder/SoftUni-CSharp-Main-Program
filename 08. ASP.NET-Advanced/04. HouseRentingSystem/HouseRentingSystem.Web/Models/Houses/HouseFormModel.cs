@@ -1,6 +1,5 @@
 ﻿using HouseRentingSystem.Services.Houses.Models;
 using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
 
 using static HouseRentingSystem.Services.Data.DataConstants.House;
 
@@ -8,7 +7,6 @@ namespace HouseRentingSystem.Web.Models.Houses
 {
     public class HouseFormModel : IHouseModel
     {
-
         [Required]
         [StringLength(TitleMaxLength, MinimumLength = TitleMinLength)]
         public string Title { get; init; }
@@ -34,7 +32,6 @@ namespace HouseRentingSystem.Web.Models.Houses
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
 
-        public IEnumerable<HouseCategoryServiceModel> Categories { get; set; }
-            = new List<HouseCategoryServiceModel>();
+        public IEnumerable<HouseCategoryServiceModel> Categories { get; set; } = new List<HouseCategoryServiceModel>();
     }
 }

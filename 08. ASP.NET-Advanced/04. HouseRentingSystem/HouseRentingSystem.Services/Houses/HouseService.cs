@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Collections.Generic;
-using HouseRentingSystem.Services.Data;
+﻿using HouseRentingSystem.Services.Data;
 using HouseRentingSystem.Services.Data.Entities;
 using HouseRentingSystem.Services.Houses.Models;
 using AutoMapper;

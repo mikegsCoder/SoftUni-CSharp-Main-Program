@@ -11,5 +11,3 @@ namespace HouseRentingSystem.Services.Houses.Models
         public AgentServiceModel Agent { get; set; }
     }
 }
-
-

@@ -26,5 +26,3 @@ namespace HouseRentingSystem.Services.Infrastructure
         }
     }
 }
-
-

@@ -13,6 +13,7 @@ namespace HouseRentingSystem.Services.Statistics
         public StatisticsServiceModel Total()
         {
             var totalHouses = this.data.Houses.Count();
+
             var totalRents = this.data.Houses
                 .Where(h => h.RenterId != null).Count();
 
