@@ -8,6 +8,11 @@ namespace CarShop.Controllers
         [HttpGet("/")]
         public HttpResponse Index()
         {
+            if (this.IsUserSignedIn())
+            {
+                return this.Redirect("/Cars/All");
+            }
+
             return this.View();
         }
     }
