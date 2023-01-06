@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarShop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210622062215_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230106155544_CreateAppDB")]
+    partial class CreateAppDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,11 +58,8 @@ namespace CarShop.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CarId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CardId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -117,7 +114,9 @@ namespace CarShop.Migrations
                 {
                     b.HasOne("CarShop.Data.Models.Car", "Car")
                         .WithMany("Issues")
-                        .HasForeignKey("CarId");
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

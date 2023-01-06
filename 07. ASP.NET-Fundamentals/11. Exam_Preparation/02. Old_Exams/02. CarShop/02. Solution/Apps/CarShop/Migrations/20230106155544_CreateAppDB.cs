@@ -2,7 +2,7 @@
 
 namespace CarShop.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class CreateAppDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -50,8 +50,7 @@ namespace CarShop.Migrations
                     Id = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: false),
                     IsFixed = table.Column<bool>(nullable: false),
-                    CardId = table.Column<string>(nullable: false),
-                    CarId = table.Column<string>(nullable: true)
+                    CarId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -61,7 +60,7 @@ namespace CarShop.Migrations
                         column: x => x.CarId,
                         principalTable: "Cars",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
