@@ -1,4 +1,5 @@
-﻿using CarShop.ViewModels.Users;
+﻿using CarShop.Services;
+using CarShop.ViewModels.Users;
 using SUS.HTTP;
 using SUS.MvcFramework;
 using System.ComponentModel.DataAnnotations;
@@ -7,6 +8,14 @@ namespace CarShop.Controllers
 {
     public class UsersController : Controller
     {
+
+        private readonly IUsersService usersService;
+
+        public UsersController(IUsersService usersService)
+        {
+            this.usersService = usersService;
+        }
+
         public HttpResponse Login()
         {
             if (this.IsUserSignedIn())
