@@ -15,5 +15,15 @@ namespace CarShop.Controllers
 
             return this.View();
         }
+
+        public HttpResponse Register()
+        {
+            if (this.IsUserSignedIn())
+            {
+                return this.Redirect("/");
+            }
+
+            return this.View();
+        }
     }
 }
