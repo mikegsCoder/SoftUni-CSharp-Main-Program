@@ -1,4 +1,5 @@
-﻿using SUS.HTTP;
+﻿using CarShop.ViewModels.Users;
+using SUS.HTTP;
 using SUS.MvcFramework;
 using System.ComponentModel.DataAnnotations;
 
