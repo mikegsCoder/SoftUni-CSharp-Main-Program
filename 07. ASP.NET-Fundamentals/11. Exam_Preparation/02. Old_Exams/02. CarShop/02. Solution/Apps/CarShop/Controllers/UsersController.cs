@@ -25,5 +25,24 @@ namespace CarShop.Controllers
 
             return this.View();
         }
+
+        [HttpPost]
+        public HttpResponse Login(LoginInputModel login)
+        {
+            if (this.IsUserSignedIn())
+            {
+                return this.Redirect("/");
+            }
+
+            var userId = this.usersService.GetUserId(login);
+
+            if (userId == null)
+            {
+                return this.Error("Invalid username or password.");
+            }
+            this.SignIn(userId);
+
+            return this.Redirect("/Cars/All");
+        }
     }
 }
