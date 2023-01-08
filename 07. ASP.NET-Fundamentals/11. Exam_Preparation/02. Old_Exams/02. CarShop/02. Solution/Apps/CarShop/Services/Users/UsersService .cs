@@ -36,6 +36,21 @@ namespace CarShop.Services
             return !db.Users.Any(x => x.Email == register.Email);
         }
 
+        public void Create(RegisterInputModel register)
+        {
+            var user = new User
+            {
+                Username = register.Username,
+                Email = register.Email,
+                Password = ComputeHash(register.Password),
+                IsMechanic = register.userType == "Mechanic" ? true : false
+            };
+
+            this.db.Users.Add(user);
+
+            this.db.SaveChanges();
+        }
+
         private string ComputeHash(string password)
         {
             var bytes = Encoding.UTF8.GetBytes(password);

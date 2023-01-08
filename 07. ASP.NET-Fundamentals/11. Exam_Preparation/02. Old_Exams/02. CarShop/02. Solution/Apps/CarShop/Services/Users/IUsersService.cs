@@ -9,5 +9,7 @@ namespace CarShop.Services
         bool IsUsernameAvailable(RegisterInputModel register);
 
         bool IsEmailAvailable(RegisterInputModel registerl);
+
+        void Create(RegisterInputModel register);
     }
 }
