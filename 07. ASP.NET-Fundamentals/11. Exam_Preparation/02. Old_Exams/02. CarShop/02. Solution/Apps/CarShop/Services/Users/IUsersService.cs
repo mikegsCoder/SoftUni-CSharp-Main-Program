@@ -8,5 +8,6 @@ namespace CarShop.Services
 
         bool IsUsernameAvailable(RegisterInputModel register);
 
+        bool IsEmailAvailable(RegisterInputModel registerl);
     }
 }
