@@ -6,5 +6,7 @@ namespace CarShop.Services
     {
         string GetUserId(LoginInputModel login);
 
+        bool IsUsernameAvailable(RegisterInputModel register);
+
     }
 }

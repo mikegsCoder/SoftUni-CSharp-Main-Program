@@ -26,6 +26,11 @@ namespace CarShop.Services
             return user?.Id;
         }
 
+        public bool IsUsernameAvailable(RegisterInputModel register)
+        {
+            return !db.Users.Any(x => x.Username == register.Username);
+        }
+
         private string ComputeHash(string password)
         {
             var bytes = Encoding.UTF8.GetBytes(password);
