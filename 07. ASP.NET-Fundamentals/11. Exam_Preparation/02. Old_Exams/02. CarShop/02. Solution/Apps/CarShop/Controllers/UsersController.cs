@@ -102,5 +102,15 @@ namespace CarShop.Controllers
 
             return this.Redirect("/Users/Login");
         }
+
+        public HttpResponse Logout()
+        {
+            if (this.IsUserSignedIn())
+            {
+                this.SignOut();
+            }
+
+            return this.Redirect("/");
+        }
     }
 }
