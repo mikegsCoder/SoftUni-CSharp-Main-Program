@@ -1,4 +1,5 @@
 ﻿using CarShop.ViewModels;
+using CarShop.ViewModels.Cars;
 
 namespace CarShop.Services.Cars
 {

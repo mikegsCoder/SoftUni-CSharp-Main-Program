@@ -1,6 +1,7 @@
 ﻿using CarShop.Data;
 using CarShop.Data.Models;
 using CarShop.ViewModels;
+using CarShop.ViewModels.Cars;
 using System.Linq;
 
 namespace CarShop.Services.Cars
