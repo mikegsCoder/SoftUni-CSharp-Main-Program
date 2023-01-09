@@ -11,5 +11,7 @@ namespace CarShop.Services
         bool IsEmailAvailable(RegisterInputModel registerl);
 
         void Create(RegisterInputModel register);
+
+        bool IsUserMechanic(string userId);
     }
 }

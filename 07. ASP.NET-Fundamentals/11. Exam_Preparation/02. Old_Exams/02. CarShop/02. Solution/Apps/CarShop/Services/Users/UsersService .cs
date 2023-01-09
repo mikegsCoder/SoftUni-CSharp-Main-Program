@@ -51,6 +51,13 @@ namespace CarShop.Services
             this.db.SaveChanges();
         }
 
+        public bool IsUserMechanic(string userId)
+        {
+            var isMechanic = this.db.Users.Where(x => x.Id == userId).Select(x => x.IsMechanic).FirstOrDefault();
+
+            return isMechanic;
+        }
+
         private string ComputeHash(string password)
         {
             var bytes = Encoding.UTF8.GetBytes(password);
