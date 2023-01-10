@@ -41,5 +41,15 @@ namespace CarShop.Controllers
                 return this.View(viewModel);
             }
         }
+
+        public HttpResponse Add()
+        {
+            if (!this.IsUserSignedIn())
+            {
+                return this.Redirect("/");
+            }
+
+            return this.View();
+        }
     }
 }
