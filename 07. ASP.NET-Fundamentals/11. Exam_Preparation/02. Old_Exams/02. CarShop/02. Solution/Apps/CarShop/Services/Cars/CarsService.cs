@@ -34,5 +34,25 @@ namespace CarShop.Services.Cars
 
             return viewModel;
         }
+
+        public AllCarsViewModel GetAllCarsForNechanics()
+        {
+            var viewModel = new AllCarsViewModel
+            {
+                Cars = this.db.Cars
+                    .Where(x => x.Issues.Count > 0)
+                    .Select(x => new CarViewModel
+                    {
+                        PlateNumber = x.PlateNumber,
+                        Image = x.PictureUrl,
+                        Model = x.Model,
+                        FixedIssues = x.Issues.Where(y => y.IsFixed).Count(),
+                        RemainingIssues = x.Issues.Where(y => !y.IsFixed).Count(),
+                        Id = x.Id
+                    }).ToList()
+            };
+
+            return viewModel;
+        }
     }
 }
