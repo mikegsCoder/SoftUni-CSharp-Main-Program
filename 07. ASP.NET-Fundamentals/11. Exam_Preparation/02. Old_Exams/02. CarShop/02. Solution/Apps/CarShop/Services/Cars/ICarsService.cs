@@ -7,6 +7,6 @@ namespace CarShop.Services.Cars
     {
         AllCarsViewModel GetAllCars(string userId);
 
-        AllCarsViewModel GetAllCarsForNechanics();
+        AllCarsViewModel GetAllCarsForMechanics();
     }
 }

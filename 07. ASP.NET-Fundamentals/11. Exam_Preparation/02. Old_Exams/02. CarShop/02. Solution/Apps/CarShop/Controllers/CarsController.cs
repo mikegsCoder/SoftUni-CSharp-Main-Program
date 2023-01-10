@@ -32,7 +32,7 @@ namespace CarShop.Controllers
 
             if (isUserMechanic)
             {
-                var viewModel = this.carsService.GetAllCarsForNechanics();
+                var viewModel = this.carsService.GetAllCarsForMechanics();
                 return this.View(viewModel);
             }
             else

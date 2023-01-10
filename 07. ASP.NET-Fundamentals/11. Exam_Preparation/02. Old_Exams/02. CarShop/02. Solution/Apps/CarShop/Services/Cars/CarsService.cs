@@ -35,7 +35,7 @@ namespace CarShop.Services.Cars
             return viewModel;
         }
 
-        public AllCarsViewModel GetAllCarsForNechanics()
+        public AllCarsViewModel GetAllCarsForMechanics()
         {
             var viewModel = new AllCarsViewModel
             {
