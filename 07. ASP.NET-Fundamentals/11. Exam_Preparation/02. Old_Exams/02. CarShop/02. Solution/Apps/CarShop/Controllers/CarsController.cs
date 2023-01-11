@@ -51,5 +51,47 @@ namespace CarShop.Controllers
 
             return this.View();
         }
+
+        [HttpPost]
+        public HttpResponse Add(CarInputModel inputModel)
+        {
+            if (!this.IsUserSignedIn())
+            {
+                return this.Redirect("/");
+            }
+
+            if (string.IsNullOrEmpty(inputModel.Model)
+                || inputModel.Model.Length < 5
+                || inputModel.Model.Length > 20)
+            {
+                return this.Error("Model should be between 5 and 20 characters");
+            }
+
+            if (inputModel.Year < 1900)
+            {
+                return this.Error("Year should have a value");
+            }
+
+            if (string.IsNullOrEmpty(inputModel.Image))
+            {
+                return this.Error("Please add an image!");
+            }
+
+            if (!Regex.IsMatch(inputModel.PlateNumber, @"^[A-Z]{2}[0-9]{4}[A-Z]{2}$"))
+            {
+                return this.Error("Please add a valid plate number!");
+            }
+
+            var userId = this.GetUserId();
+
+            if (usersService.IsUserMechanic(userId) == true)
+            {
+                return this.Error("Mechanics can not add cars");
+            }
+
+            this.carsService.AddCar(userId, inputModel);
+
+            return this.Redirect("/Cars/All");
+        }
     }
 }
