@@ -8,5 +8,7 @@ namespace CarShop.Services.Cars
         AllCarsViewModel GetAllCars(string userId);
 
         AllCarsViewModel GetAllCarsForMechanics();
+
+        public void AddCar(string userId, CarInputModel inputModel);
     }
 }

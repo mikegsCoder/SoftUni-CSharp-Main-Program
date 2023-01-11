@@ -54,5 +54,20 @@ namespace CarShop.Services.Cars
 
             return viewModel;
         }
+
+        public void AddCar(string userId, CarInputModel inputModel)
+        {
+            var car = new Car
+            {
+                Model = inputModel.Model,
+                PictureUrl = inputModel.Image,
+                PlateNumber = inputModel.PlateNumber,
+                Year = inputModel.Year,
+                OwnerId = userId
+            };
+
+            this.db.Cars.Add(car);
+            this.db.SaveChanges();
+        }
     }
 }
