@@ -21,5 +21,24 @@ namespace CarShop.Controllers
 
             return this.View(viewModel);
         }
+
+        [HttpPost]
+        public HttpResponse Add(string carId, IssueInputModel inputModel)
+        {
+            if (!this.IsUserSignedIn())
+            {
+                return this.Redirect("/");
+            }
+
+            if (string.IsNullOrEmpty(inputModel.Description)
+                || inputModel.Description.Length < 4)
+            {
+                return this.Error("Description length should have more than 5 symbols ");
+            }
+
+            this.issuesService.CreateIssue(carId, inputModel);
+
+            return this.Redirect($"/Issues/CarIssues?carId={carId}");
+        }
     }
 }
