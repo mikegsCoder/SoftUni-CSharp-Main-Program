@@ -1,4 +1,5 @@
-﻿using CarShop.ViewModels.Issues;
+﻿using CarShop.Services.Issues;
+using CarShop.ViewModels.Issues;
 using SUS.HTTP;
 using SUS.MvcFramework;
 
@@ -7,6 +8,13 @@ namespace CarShop.Controllers
 {
     public class IssuesController : Controller
     {
+        private readonly IIssuesService issuesService;
+
+        public IssuesController(IIssuesService issuesService)
+        {
+            this.issuesService = issuesService;
+        }
+
         public HttpResponse Add(string carId)
         {
             if (!this.IsUserSignedIn())
