@@ -27,5 +27,35 @@ namespace CarShop.Services.Issues
             this.db.Issues.Add(issue);
             this.db.SaveChanges();
         }
+
+        public AllIssuesViewModel GetAllIssues(string carId, string userId)
+        {
+            var carModel = this.db.Cars
+                .Where(x => x.Id == carId)
+                .Select(x => x.Model)
+                .FirstOrDefault();
+
+            var userRole = this.db.Users
+                .Where(x => x.Id == userId)
+                .Select(x => x.IsMechanic.ToString())
+                .FirstOrDefault();
+
+            var viewModel = new AllIssuesViewModel
+            {
+                Model = carModel,
+                CarId = carId,
+                UserRole = userRole,
+                Issues = this.db.Issues
+                .Where(x => x.CarId == carId)
+                .Select(x => new IssueViewModel
+                {
+                    Description = x.Description,
+                    IsFixed = x.IsFixed == true ? "Yes" : "Not yet",
+                    IssueId = x.Id,
+                }).ToList()
+            };
+
+            return viewModel;
+        }
     }
 }
