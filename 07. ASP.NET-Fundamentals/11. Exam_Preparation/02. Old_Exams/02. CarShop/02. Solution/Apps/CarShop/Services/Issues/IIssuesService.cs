@@ -9,5 +9,7 @@ namespace CarShop.Services.Issues
         AllIssuesViewModel GetAllIssues(string carId, string userId);
 
         void DeleteIssue(string issueId);
+
+        void FixIssue(string issueId);
     }
 }

@@ -68,5 +68,16 @@ namespace CarShop.Services.Issues
 
             this.db.SaveChanges();
         }
+
+        public void FixIssue(string issueId)
+        {
+            var issue = this.db.Issues
+                .Where(x => x.Id == issueId)
+                .FirstOrDefault();
+
+            issue.IsFixed = true;
+
+            this.db.SaveChanges();
+        }
     }
 }
