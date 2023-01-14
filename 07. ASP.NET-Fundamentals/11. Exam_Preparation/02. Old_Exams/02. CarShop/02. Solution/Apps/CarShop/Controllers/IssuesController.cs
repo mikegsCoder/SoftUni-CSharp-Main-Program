@@ -74,5 +74,17 @@ namespace CarShop.Controllers
 
             return this.Redirect($"/Issues/CarIssues?carId={carId}");
         }
+
+        public HttpResponse Fix(string issueId, string carId)
+        {
+            if (!this.IsUserSignedIn())
+            {
+                return this.Redirect("/");
+            }
+
+            this.issuesService.FixIssue(issueId);
+
+            return this.Redirect($"/Issues/CarIssues?carId={carId}");
+        }
     }
 }
