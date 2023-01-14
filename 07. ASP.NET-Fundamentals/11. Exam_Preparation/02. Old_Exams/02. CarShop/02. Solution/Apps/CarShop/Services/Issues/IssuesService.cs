@@ -1,7 +1,6 @@
 ﻿using CarShop.Data;
 using CarShop.Data.Models;
 using CarShop.ViewModels.Issues;
-using System;
 using System.Linq;
 
 namespace CarShop.Services.Issues
@@ -25,6 +24,7 @@ namespace CarShop.Services.Issues
             };
 
             this.db.Issues.Add(issue);
+
             this.db.SaveChanges();
         }
 

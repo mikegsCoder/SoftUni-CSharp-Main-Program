@@ -8,7 +8,6 @@ namespace CarShop.Controllers
 {
     public class UsersController : Controller
     {
-
         private readonly IUsersService usersService;
 
         public UsersController(IUsersService usersService)
@@ -50,6 +49,7 @@ namespace CarShop.Controllers
             {
                 return this.Error("Invalid username or password.");
             }
+
             this.SignIn(userId);
 
             return this.Redirect("/Cars/All");
@@ -109,7 +109,7 @@ namespace CarShop.Controllers
             {
                 this.SignOut();
             }
-
+            
             return this.Redirect("/");
         }
     }

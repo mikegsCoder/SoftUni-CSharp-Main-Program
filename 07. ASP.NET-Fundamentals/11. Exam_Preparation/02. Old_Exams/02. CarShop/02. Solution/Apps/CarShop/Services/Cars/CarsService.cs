@@ -67,6 +67,7 @@ namespace CarShop.Services.Cars
             };
 
             this.db.Cars.Add(car);
+
             this.db.SaveChanges();
         }
     }

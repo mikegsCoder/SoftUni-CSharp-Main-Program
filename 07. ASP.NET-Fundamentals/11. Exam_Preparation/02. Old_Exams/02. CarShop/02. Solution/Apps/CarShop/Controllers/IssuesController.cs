@@ -3,7 +3,6 @@ using CarShop.ViewModels.Issues;
 using SUS.HTTP;
 using SUS.MvcFramework;
 
-
 namespace CarShop.Controllers
 {
     public class IssuesController : Controller

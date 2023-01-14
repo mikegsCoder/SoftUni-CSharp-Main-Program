@@ -28,16 +28,19 @@ namespace CarShop.Controllers
             }
 
             string userId = this.GetUserId();
+
             var isUserMechanic = this.usersService.IsUserMechanic(userId);
 
             if (isUserMechanic)
             {
                 var viewModel = this.carsService.GetAllCarsForMechanics();
+
                 return this.View(viewModel);
             }
             else
             {
                 var viewModel = this.carsService.GetAllCars(userId);
+
                 return this.View(viewModel);
             }
         }

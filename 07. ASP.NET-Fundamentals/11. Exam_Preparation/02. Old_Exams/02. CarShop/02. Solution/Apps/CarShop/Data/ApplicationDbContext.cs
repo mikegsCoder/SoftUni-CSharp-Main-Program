@@ -12,7 +12,6 @@ namespace CarShop.Data
         public ApplicationDbContext(DbContextOptions dbContextOptions)
             : base(dbContextOptions)
         {
-
         }
 
         public DbSet<User> Users { get; set; }
