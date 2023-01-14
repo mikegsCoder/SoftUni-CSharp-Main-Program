@@ -62,5 +62,16 @@ namespace CarShop.Controllers
 
             return this.View(viewModel);
         }
+
+        public HttpResponse Delete(string issueId, string carId)
+        {
+            if (!this.IsUserSignedIn())
+            {
+                return this.Redirect("/");
+            }
+
+            this.issuesService.DeleteIssue(issueId);
+            return this.Redirect($"/Issues/CarIssues?carId={carId}");
+        }
     }
 }
