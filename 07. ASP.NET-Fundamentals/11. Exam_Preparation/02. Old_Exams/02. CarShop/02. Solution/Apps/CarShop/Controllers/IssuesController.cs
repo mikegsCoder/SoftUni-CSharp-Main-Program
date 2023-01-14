@@ -71,6 +71,7 @@ namespace CarShop.Controllers
             }
 
             this.issuesService.DeleteIssue(issueId);
+
             return this.Redirect($"/Issues/CarIssues?carId={carId}");
         }
     }

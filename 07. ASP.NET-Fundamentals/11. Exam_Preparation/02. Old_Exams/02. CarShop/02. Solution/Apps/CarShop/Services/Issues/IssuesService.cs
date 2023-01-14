@@ -57,5 +57,16 @@ namespace CarShop.Services.Issues
 
             return viewModel;
         }
+
+        public void DeleteIssue(string issueId)
+        {
+            var issue = this.db.Issues
+                .Where(x => x.Id == issueId)
+                .FirstOrDefault();
+
+            this.db.Remove(issue);
+
+            this.db.SaveChanges();
+        }
     }
 }
