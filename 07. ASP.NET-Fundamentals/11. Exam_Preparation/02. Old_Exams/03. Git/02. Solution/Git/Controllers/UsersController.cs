@@ -20,4 +20,19 @@ namespace Git.Controllers
             return View();
         }
     }
+
+    [HttpPost]
+    public HttpResponse Login(LoginViewModel user)
+    {
+        var userId = userService.Login(user);
+
+        if (userId == null)
+        {
+            return Redirect("/Users/Login");
+        }
+
+        SignIn(userId);
+
+        return Redirect("/Repositories/All");
+    }
 }
