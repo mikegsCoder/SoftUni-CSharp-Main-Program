@@ -6,11 +6,19 @@ using System.Threading.Tasks;
 using MyWebServer.Controllers;
 using MyWebServer.Http;
 using Git.ViewModels.User;
+using Git.Services.UserService;
 
 namespace Git.Controllers
 {
     public class UsersController : Controller
     {
+        private readonly IUserService userService;
+
+        public UsersController(IUserService _userService)
+        {
+            userService = _userService;
+        }
+
         public HttpResponse Login()
         {
             if (this.User.IsAuthenticated)
@@ -20,20 +28,20 @@ namespace Git.Controllers
 
             return View();
         }
-    }
 
-    [HttpPost]
-    public HttpResponse Login(LoginViewModel user)
-    {
-        var userId = userService.Login(user);
-
-        if (userId == null)
+        [HttpPost]
+        public HttpResponse Login(LoginViewModel user)
         {
-            return Redirect("/Users/Login");
+            var userId = userService.Login(user);
+
+            if (userId == null)
+            {
+                return Redirect("/Users/Login");
+            }
+
+            SignIn(userId);
+
+            return Redirect("/Repositories/All");
         }
-
-        SignIn(userId);
-
-        return Redirect("/Repositories/All");
     }
 }
