@@ -8,6 +8,7 @@
     using Microsoft.EntityFrameworkCore;
     using Git.Data.Common;
     using Git.Services.UserService;
+    using Git.Services.ValidationService;
 
     public class Startup
     {
@@ -20,6 +21,7 @@
                 .Add<ApplicationDbContext>()
                 .Add<IViewEngine, CompilationViewEngine>()
                 .Add<IRepository, Repository>()
+                .Add<IValidationService, ValidationService>()
                 .Add<IUserService, UserService>())
                 .WithConfiguration<ApplicationDbContext>(context => context
                     .Database.Migrate())
