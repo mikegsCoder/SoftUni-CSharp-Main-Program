@@ -43,5 +43,15 @@ namespace Git.Controllers
 
             return Redirect("/Repositories/All");
         }
+
+        public HttpResponse Register()
+        {
+            if (this.User.IsAuthenticated)
+            {
+                return Redirect("/Home/Index");
+            }
+
+            return View();
+        }
     }
 }
