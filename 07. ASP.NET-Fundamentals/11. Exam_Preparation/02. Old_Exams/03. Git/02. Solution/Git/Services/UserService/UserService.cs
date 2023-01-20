@@ -6,6 +6,7 @@ using System.Linq;
 using System;
 using System.Collections.Generic;
 using Git.ViewModels.User;
+using System.ComponentModel.DataAnnotations;
 
 namespace Git.Services.UserService
 {
@@ -67,6 +68,11 @@ namespace Git.Services.UserService
             }
 
             return errors;
+        }
+
+        public ICollection<string> ValidateRegistration(RegisterViewModel model)
+        {
+            return validator.ValidateModel(model);
         }
 
         public string Hash(string password)
