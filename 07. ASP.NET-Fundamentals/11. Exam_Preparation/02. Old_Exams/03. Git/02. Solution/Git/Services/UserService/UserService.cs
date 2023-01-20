@@ -31,6 +31,44 @@ namespace Git.Services.UserService
             return userId;
         }
 
+        public ICollection<string> Register(RegisterViewModel model)
+        {
+            var errors = this.ValidateRegistration(model);
+
+            if (this.repository.All<User>().Any(u => u.Username == model.Username))
+            {
+                errors.Add("Username is already taken.");
+            }
+
+            if (this.repository.All<User>().Any(u => u.Email == model.Email))
+            {
+                errors.Add("Email is already registered.");
+            }
+
+            if (errors.Any())
+            {
+                return errors;
+            }
+
+            try
+            {
+                repository.Add(new User()
+                {
+                    Username = model.Username,
+                    Email = model.Email,
+                    Password = this.Hash(model.Password),
+                });
+
+                repository.SaveChanges();
+            }
+            catch (Exception)
+            {
+                errors.Add("Something went wrong. Please try again later.");
+            }
+
+            return errors;
+        }
+
         public string Hash(string password)
         {
             if (string.IsNullOrWhiteSpace(password))
