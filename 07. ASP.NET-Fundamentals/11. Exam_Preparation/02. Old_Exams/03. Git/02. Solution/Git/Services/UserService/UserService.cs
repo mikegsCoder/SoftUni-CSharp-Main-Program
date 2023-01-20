@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using Git.ViewModels.User;
 using System.ComponentModel.DataAnnotations;
+using Git.Services.ValidationService;
 
 namespace Git.Services.UserService
 {
@@ -14,9 +15,14 @@ namespace Git.Services.UserService
     {
         private readonly IRepository repository;
 
-        public UserService(IRepository _repository)
+        private readonly IValidationService validator;
+
+        public UserService(
+            IRepository _repository,
+            IValidationService _validationService)
         {
             repository = _repository;
+            validator = _validationService;
         }
 
         public string Login(LoginViewModel model)
