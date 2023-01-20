@@ -53,5 +53,18 @@ namespace Git.Controllers
 
             return View();
         }
+
+        [HttpPost]
+        public HttpResponse Register(RegisterViewModel user)
+        {
+            var errors = userService.Register(user);
+
+            if (errors.Any())
+            {
+                return Redirect("/Users/Register");
+            }
+
+            return Redirect("/Users/Login");
+        }
     }
 }
