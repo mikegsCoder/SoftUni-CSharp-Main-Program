@@ -1,5 +1,6 @@
 ﻿using Git.Data.Common;
 using Git.Data.Models;
+using Git.ViewModels.Repository;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using System;
 using System.Collections.Generic;
