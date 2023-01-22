@@ -1,4 +1,5 @@
-﻿using MyWebServer.Controllers;
+﻿using Git.Services.RepositoryService;
+using MyWebServer.Controllers;
 using MyWebServer.Http;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,12 @@ namespace Git.Controllers
 {
     public class RepositoriesController : Controller
     {
+        private readonly IRepositoryService service;
+        public RepositoriesController(IRepositoryService _service)
+        {
+            service = _service;
+        }
+
         public HttpResponse All()
         {
             var model = service.GetAllPublic();
