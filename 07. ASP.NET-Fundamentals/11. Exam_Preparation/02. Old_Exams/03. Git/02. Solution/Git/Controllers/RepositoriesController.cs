@@ -23,5 +23,15 @@ namespace Git.Controllers
 
             return View(model);
         }
+
+        public HttpResponse Create()
+        {
+            if (!User.IsAuthenticated)
+            {
+                return Redirect("/Users/Login");
+            }
+
+            return View();
+        }
     }
 }
