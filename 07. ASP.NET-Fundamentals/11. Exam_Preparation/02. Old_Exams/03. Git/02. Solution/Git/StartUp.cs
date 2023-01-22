@@ -9,6 +9,7 @@
     using Git.Data.Common;
     using Git.Services.UserService;
     using Git.Services.ValidationService;
+    using Git.Services.RepositoryService;
 
     public class Startup
     {
@@ -22,7 +23,8 @@
                 .Add<IViewEngine, CompilationViewEngine>()
                 .Add<IRepository, Repository>()
                 .Add<IValidationService, ValidationService>()
-                .Add<IUserService, UserService>())
+                .Add<IUserService, UserService>()
+                .Add<IRepositoryService, RepositoryService>())
                 .WithConfiguration<ApplicationDbContext>(context => context
                     .Database.Migrate())
                 .Start();
