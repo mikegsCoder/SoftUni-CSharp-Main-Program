@@ -11,5 +11,7 @@ namespace Git.Services.RepositoryService
     public interface IRepositoryService
     {
         public AllRepositoriesViewModel GetAllPublic();
+
+        IEnumerable<string> CreateRepo(CreateRepositoryViewModel model, string userId);
     }
 }

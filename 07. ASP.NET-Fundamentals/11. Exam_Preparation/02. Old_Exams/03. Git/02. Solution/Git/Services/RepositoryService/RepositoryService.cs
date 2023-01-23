@@ -39,5 +39,37 @@ namespace Git.Services.RepositoryService
 
             return viewModel;
         }
+
+        public IEnumerable<string> CreateRepo(CreateRepositoryViewModel model, string userId)
+        {
+            var errors = new List<string>();
+
+            if (model.Name.Length < 3 || model.Name.Length > 10)
+            {
+                errors.Add("Repo name must be between 3 and 10 characters long");
+
+                return errors;
+            }
+
+            Repository repository = new Repository()
+            {
+                Name = model.Name,
+                CreatedOn = DateTime.Now,
+                IsPublic = model.RepositoryType == "Public" ? true : false,
+                OwnerId = userId,
+            };
+
+            try
+            {
+                repo.Add(repository);
+                repo.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                errors.Add(ex.Message);
+            }
+
+            return errors;
+        }
     }
 }
