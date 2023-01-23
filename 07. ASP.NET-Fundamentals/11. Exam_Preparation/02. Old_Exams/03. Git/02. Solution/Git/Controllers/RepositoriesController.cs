@@ -12,6 +12,7 @@ namespace Git.Controllers
     public class RepositoriesController : Controller
     {
         private readonly IRepositoryService service;
+
         public RepositoriesController(IRepositoryService _service)
         {
             service = _service;
@@ -32,6 +33,15 @@ namespace Git.Controllers
             }
 
             return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public HttpResponse Create(CreateRepositoryViewModel model)
+        {
+            var errors = service.CreateRepo(model, User.Id);
+
+            return Redirect("/Repositories/All");
         }
     }
 }
