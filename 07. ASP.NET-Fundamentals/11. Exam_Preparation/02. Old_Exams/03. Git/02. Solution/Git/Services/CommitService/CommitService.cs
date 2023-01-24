@@ -1,5 +1,6 @@
 ﻿using Git.Data.Common;
 using Git.Data.Models;
+using Git.ViewModels.Commit;
 using System;
 using System.Collections.Generic;
 using System.Formats.Asn1;
