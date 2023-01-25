@@ -71,5 +71,17 @@ namespace Git.Services.RepositoryService
 
             return errors;
         }
+
+        public CreateCommitViewModel GetRepo(string id)
+        {
+            return repo
+                .All<Data.Models.Repository>()
+                .Select(x => new CreateCommitViewModel
+                {
+                    Name = x.Name,
+                    Id = x.Id
+                })
+                .FirstOrDefault(x => x.Id == id);
+        }
     }
 }
