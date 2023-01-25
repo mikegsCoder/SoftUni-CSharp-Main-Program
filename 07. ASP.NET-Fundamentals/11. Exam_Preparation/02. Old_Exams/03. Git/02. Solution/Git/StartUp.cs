@@ -10,6 +10,7 @@
     using Git.Services.UserService;
     using Git.Services.ValidationService;
     using Git.Services.RepositoryService;
+    using Git.Services.CommitService;
 
     public class Startup
     {
@@ -24,7 +25,8 @@
                 .Add<IRepository, Repository>()
                 .Add<IValidationService, ValidationService>()
                 .Add<IUserService, UserService>()
-                .Add<IRepositoryService, RepositoryService>())
+                .Add<IRepositoryService, RepositoryService>()
+                .Add<ICommitService, CommitService>())
                 .WithConfiguration<ApplicationDbContext>(context => context
                     .Database.Migrate())
                 .Start();
