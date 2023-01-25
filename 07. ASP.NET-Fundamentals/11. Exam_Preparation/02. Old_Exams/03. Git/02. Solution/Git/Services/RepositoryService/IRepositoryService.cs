@@ -1,4 +1,5 @@
 ﻿using Git.Data.Models;
+using Git.ViewModels.Commit;
 using Git.ViewModels.Repository;
 using System;
 using System.Collections.Generic;
