@@ -14,10 +14,14 @@ namespace Git.Controllers
     public class CommitsController : Controller
     {
         private readonly ICommitService commitService;
+        private readonly IRepositoryService repositoryService;
 
-        public CommitsController(ICommitService _commitService)
+        public CommitsController(
+            ICommitService _commitService,
+            IRepositoryService _repositoryService)
         {
             commitService = _commitService;
+            repositoryService = _repositoryService;
         }
 
         [Authorize]
@@ -26,6 +30,14 @@ namespace Git.Controllers
             var models = this.commitService.GetAll(this.User.Id);
 
             return this.View(models);
+        }
+
+        [Authorize]
+        public HttpResponse Create(string id)
+        {
+            var viewModel = this.repositoryService.GetRepo(id);
+
+            return this.View(viewModel);
         }
     }
 }
