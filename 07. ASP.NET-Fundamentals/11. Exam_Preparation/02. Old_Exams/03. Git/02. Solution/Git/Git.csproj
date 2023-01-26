@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Views\Commits\Create.cshtml" />
     <None Remove="Views\Repositories\Create.cshtml" />
     <None Remove="Views\Users\Register.cshtml" />
   </ItemGroup>
