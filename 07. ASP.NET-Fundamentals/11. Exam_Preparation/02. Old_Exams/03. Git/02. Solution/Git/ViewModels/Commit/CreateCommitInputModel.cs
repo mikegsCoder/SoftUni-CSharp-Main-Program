@@ -13,7 +13,5 @@ namespace Git.ViewModels.Commit
         public string Id { get; set; }
 
         public string CreatorId { get; set; } = string.Empty;
-
-        //public string RepositoryId { get; set; } = string.Empty;
     }
 }
