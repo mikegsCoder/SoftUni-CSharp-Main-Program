@@ -15,13 +15,16 @@ namespace Git.Controllers
     public class CommitsController : Controller
     {
         private readonly ICommitService commitService;
+        private readonly IValidationService validatorService;
         private readonly IRepositoryService repositoryService;
 
         public CommitsController(
             ICommitService _commitService,
+            IValidationService _validationService,
             IRepositoryService _repositoryService)
         {
             commitService = _commitService;
+            validatorService = _validationService;
             repositoryService = _repositoryService;
         }
 
