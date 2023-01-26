@@ -1,6 +1,7 @@
 ﻿using Git.Services.CommitService;
 using Git.Services.RepositoryService;
 using Git.Services.ValidationService;
+using Git.ViewModels.Commit;
 using MyWebServer.Controllers;
 using MyWebServer.Http;
 using System;
