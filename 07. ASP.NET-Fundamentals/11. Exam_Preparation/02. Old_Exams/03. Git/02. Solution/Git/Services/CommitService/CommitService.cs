@@ -38,6 +38,38 @@ namespace Git.Services.CommitService
 
             return viewmodel;
         }
+
+        public IEnumerable<string> Create(CreateCommitInputModel model)
+        {
+            var errors = new List<string>();
+
+            if (string.IsNullOrWhiteSpace(model.Description) || model.Description.Length < 5)
+            {
+                errors.Add("Description must be at least 5 characters long");
+
+                return errors;
+            }
+
+            var commit = new Commit()
+            {
+                Description = model.Description,
+                CreatedOn = DateTime.Now,
+                CreatorId = model.CreatorId,
+                RepositoryId = model.Id
+            };
+
+            try
+            {
+                repo.Add(commit);
+                repo.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                errors.Add(ex.Message);
+            }
+
+            return errors;
+        }
     }
 }
 

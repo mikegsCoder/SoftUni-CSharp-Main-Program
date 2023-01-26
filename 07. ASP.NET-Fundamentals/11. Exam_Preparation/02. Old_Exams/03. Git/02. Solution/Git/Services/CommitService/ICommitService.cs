@@ -10,5 +10,7 @@ namespace Git.Services.CommitService
     public interface ICommitService
     {
         AllCommitsViewModel GetAll(string userId);
+
+        IEnumerable<string> Create(CreateCommitInputModel model);
     }
 }
