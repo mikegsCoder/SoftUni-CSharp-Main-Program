@@ -39,5 +39,23 @@ namespace Git.Controllers
 
             return this.View(viewModel);
         }
+
+        [Authorize]
+        [HttpPost]
+        public HttpResponse Create(CreateCommitInputModel model)
+        {
+            var errors = this.validatorService.ValidateModel(model);
+
+            if (errors.Any())
+            {
+                return this.Redirect($"/Commits/Create?id={model.Id}");
+            }
+
+            model.CreatorId = this.User.Id;
+
+            this.commitService.Create(model);
+
+            return this.Redirect("/Repositories/All");
+        }
     }
 }
