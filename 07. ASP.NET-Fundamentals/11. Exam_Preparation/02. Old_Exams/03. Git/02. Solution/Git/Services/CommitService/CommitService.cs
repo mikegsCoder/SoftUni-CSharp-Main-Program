@@ -3,10 +3,7 @@ using Git.Data.Models;
 using Git.ViewModels.Commit;
 using System;
 using System.Collections.Generic;
-using System.Formats.Asn1;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Git.Services.CommitService
 {
@@ -24,16 +21,16 @@ namespace Git.Services.CommitService
             var viewmodel = new AllCommitsViewModel()
             {
                 AllCommitsViewModels = repo
-                .All<Commit>()
-                .Where(x => x.CreatorId == userId)
-                .Select(x => new CommitViewModel
-                {
-                    Id = x.Id,
-                    Description = x.Description,
-                    RepositoryName = x.Repository.Name,
-                    CreatedOn = x.CreatedOn.ToString("d"),
-                })
-                .AsEnumerable()
+                    .All<Commit>()
+                    .Where(x => x.CreatorId == userId)
+                    .Select(x => new CommitViewModel
+                    {
+                        Id = x.Id,
+                        Description = x.Description,
+                        RepositoryName = x.Repository.Name,
+                        CreatedOn = x.CreatedOn.ToString("d"),
+                    })
+                    .AsEnumerable()
             };
 
             return viewmodel;
@@ -45,7 +42,7 @@ namespace Git.Services.CommitService
 
             if (string.IsNullOrWhiteSpace(model.Description) || model.Description.Length < 5)
             {
-                errors.Add("Description must be at least 5 characters long");
+                errors.Add("Description must be at least 5 characters long.");
 
                 return errors;
             }
@@ -82,4 +79,3 @@ namespace Git.Services.CommitService
         }
     }
 }
-

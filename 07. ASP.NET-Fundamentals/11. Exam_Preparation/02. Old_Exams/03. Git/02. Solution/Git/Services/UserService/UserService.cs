@@ -6,7 +6,6 @@ using System.Linq;
 using System;
 using System.Collections.Generic;
 using Git.ViewModels.User;
-using System.ComponentModel.DataAnnotations;
 using Git.Services.ValidationService;
 
 namespace Git.Services.UserService
