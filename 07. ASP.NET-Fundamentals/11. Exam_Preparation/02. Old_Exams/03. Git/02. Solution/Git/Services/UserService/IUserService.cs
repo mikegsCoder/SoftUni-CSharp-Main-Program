@@ -12,7 +12,5 @@ namespace Git.Services.UserService
         string Login(LoginViewModel model);
 
         ICollection<string> Register(RegisterViewModel model);
-
-        string Hash(string password);
     }
 }

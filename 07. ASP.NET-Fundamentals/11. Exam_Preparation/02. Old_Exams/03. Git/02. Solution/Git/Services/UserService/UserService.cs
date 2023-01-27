@@ -81,7 +81,7 @@ namespace Git.Services.UserService
             return validator.ValidateModel(model);
         }
 
-        public string Hash(string password)
+        private string Hash(string password)
         {
             if (string.IsNullOrWhiteSpace(password))
             {
