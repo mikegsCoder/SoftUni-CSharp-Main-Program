@@ -70,6 +70,16 @@ namespace Git.Services.CommitService
 
             return errors;
         }
+
+        public void Delete(string id, string userId)
+        {
+            var coomit = this.repo
+                .All<Commit>()
+                .FirstOrDefault(x => x.Id == id && x.CreatorId == userId);
+
+            this.repo.Remove(coomit);
+            this.repo.SaveChanges();
+        }
     }
 }
 

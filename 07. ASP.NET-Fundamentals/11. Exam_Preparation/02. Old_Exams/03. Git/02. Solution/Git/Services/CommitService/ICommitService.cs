@@ -12,5 +12,7 @@ namespace Git.Services.CommitService
         AllCommitsViewModel GetAll(string userId);
 
         IEnumerable<string> Create(CreateCommitInputModel model);
+
+        public void Delete(string id, string userId);
     }
 }
