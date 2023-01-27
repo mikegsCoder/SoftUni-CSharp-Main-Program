@@ -61,5 +61,13 @@ namespace Git.Controllers
 
             return this.Redirect("/Repositories/All");
         }
+
+        [Authorize]
+        public HttpResponse Delete(string id)
+        {
+            this.commitService.Delete(id, this.User.Id);
+
+            return this.Redirect("/Commits/All");
+        }
     }
 }
