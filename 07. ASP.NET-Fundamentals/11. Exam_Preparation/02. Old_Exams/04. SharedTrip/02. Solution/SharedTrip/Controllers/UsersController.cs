@@ -15,5 +15,15 @@ namespace SharedTrip.Controllers
 
             return View();
         }
+
+        public HttpResponse Register()
+        {
+            if (this.User.IsAuthenticated)
+            {
+                return Redirect("/Home/Index");
+            }
+
+            return View();
+        }
     }
 }
