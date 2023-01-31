@@ -1,12 +1,21 @@
 ﻿using System.Linq;
 using MyWebServer.Controllers;
 using MyWebServer.Http;
+using SharedTrip.Services.UserService;
 using SharedTrip.ViewModels;
 
 namespace SharedTrip.Controllers
 {
     public class UsersController : Controller
     {
+
+        private readonly IUserService userService;
+
+        public UsersController(IUserService _userService)
+        {
+            userService = _userService;
+        }
+
         public HttpResponse Login()
         {
             if (this.User.IsAuthenticated)
