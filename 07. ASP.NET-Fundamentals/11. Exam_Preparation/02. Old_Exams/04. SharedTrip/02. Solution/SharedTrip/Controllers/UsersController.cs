@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using MyWebServer.Controllers;
 using MyWebServer.Http;
+using SharedTrip.ViewModels;
 
 namespace SharedTrip.Controllers
 {
