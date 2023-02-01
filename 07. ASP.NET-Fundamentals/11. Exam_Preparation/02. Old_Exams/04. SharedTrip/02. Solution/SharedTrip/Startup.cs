@@ -9,6 +9,7 @@
     using SharedTrip.Data;
     using Microsoft.EntityFrameworkCore;
     using SharedTrip.Data.Common;
+    using SharedTrip.Services.UserService;
 
     public class Startup
     {
@@ -20,7 +21,8 @@
                 .WithServices(services => services
                     .Add<ApplicationDbContext>()
                     .Add<IViewEngine, CompilationViewEngine>()
-                    .Add<IRepository, Repository>())
+                    .Add<IRepository, Repository>()
+                    .Add<IUserService, UserService>())
                     .WithConfiguration<ApplicationDbContext>(context => context
                         .Database.Migrate())
                 .Start();
