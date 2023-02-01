@@ -10,6 +10,7 @@
     using Microsoft.EntityFrameworkCore;
     using SharedTrip.Data.Common;
     using SharedTrip.Services.UserService;
+    using SharedTrip.Services.ValidationService;
 
     public class Startup
     {
@@ -22,6 +23,7 @@
                     .Add<ApplicationDbContext>()
                     .Add<IViewEngine, CompilationViewEngine>()
                     .Add<IRepository, Repository>()
+                    .Add<IValidationService, ValidationService>()
                     .Add<IUserService, UserService>())
                     .WithConfiguration<ApplicationDbContext>(context => context
                         .Database.Migrate())
