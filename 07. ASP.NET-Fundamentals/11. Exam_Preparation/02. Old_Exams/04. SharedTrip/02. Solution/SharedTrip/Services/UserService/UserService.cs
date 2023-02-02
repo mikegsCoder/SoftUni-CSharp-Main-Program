@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using SharedTrip.Data.Common;
 using System.Security.Cryptography;
 using System.ComponentModel.DataAnnotations;
+using SharedTrip.Services.ValidationService;
 
 namespace SharedTrip.Services.UserService
 {
@@ -15,10 +16,19 @@ namespace SharedTrip.Services.UserService
     {
         private readonly IRepository repository;
 
+        private readonly IValidationService validator;
 
-        public UserService(IRepository _repository)
+        public UserService(
+            IRepository _repository,
+            IValidationService _validationService)
         {
             repository = _repository;
+            validator = _validationService;
+        }
+
+        private ICollection<string> ValidateRegistration(RegisterViewModel model)
+        {
+            return validator.ValidateModel(model);
         }
 
         public ICollection<string> Register(RegisterViewModel model)
