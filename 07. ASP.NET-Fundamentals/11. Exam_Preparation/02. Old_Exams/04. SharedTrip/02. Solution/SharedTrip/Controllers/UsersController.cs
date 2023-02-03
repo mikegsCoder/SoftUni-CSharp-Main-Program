@@ -68,5 +68,13 @@ namespace SharedTrip.Controllers
 
             return Redirect("/Users/Login");
         }
+
+        [Authorize]
+        public HttpResponse Logout()
+        {
+            SignOut();
+
+            return Redirect("/");
+        }
     }
 }
