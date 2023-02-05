@@ -25,5 +25,11 @@ namespace SharedTrip.Controllers
 
             return View(trips);
         }
+
+        [Authorize]
+        public HttpResponse Add()
+        {
+            return View();
+        }
     }
 }
