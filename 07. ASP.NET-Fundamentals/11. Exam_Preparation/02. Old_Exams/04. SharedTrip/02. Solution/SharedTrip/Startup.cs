@@ -11,6 +11,7 @@
     using SharedTrip.Data.Common;
     using SharedTrip.Services.UserService;
     using SharedTrip.Services.ValidationService;
+    using SharedTrip.Services.TripService;
 
     public class Startup
     {
@@ -24,7 +25,8 @@
                     .Add<IViewEngine, CompilationViewEngine>()
                     .Add<IRepository, Repository>()
                     .Add<IValidationService, ValidationService>()
-                    .Add<IUserService, UserService>())
+                    .Add<IUserService, UserService>()
+                    .Add<ITripService, TripService>())
                     .WithConfiguration<ApplicationDbContext>(context => context
                         .Database.Migrate())
                 .Start();
