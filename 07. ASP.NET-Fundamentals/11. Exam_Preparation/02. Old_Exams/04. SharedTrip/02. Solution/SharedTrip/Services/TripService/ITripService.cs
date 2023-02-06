@@ -10,5 +10,7 @@ namespace SharedTrip.Services.TripService
     public interface ITripService
     {
         IEnumerable<TripViewModel> GetAll();
+
+        ICollection<string> Create(TripInputViewModel model);
     }
 }
