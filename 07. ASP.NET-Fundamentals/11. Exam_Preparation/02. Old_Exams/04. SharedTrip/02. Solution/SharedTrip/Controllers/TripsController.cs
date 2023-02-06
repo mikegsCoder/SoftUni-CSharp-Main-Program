@@ -31,5 +31,24 @@ namespace SharedTrip.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        [Authorize]
+        public HttpResponse Add(TripInputViewModel model)
+        {
+            var errors = service.Create(model);
+
+            if (errors.Any())
+            {
+                AllErrorsViewModel errorModels = new AllErrorsViewModel()
+                {
+                    AllErrorsViewModels = errors.Select(e => new ErrorViewModel(e))
+                };
+
+                return View(errorModels, "/Error");
+            }
+
+            return Redirect("/Trips/All");
+        }
     }
 }
