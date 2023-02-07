@@ -50,5 +50,13 @@ namespace SharedTrip.Controllers
 
             return Redirect("/Trips/All");
         }
+
+        [Authorize]
+        public HttpResponse Details(string tripId)
+        {
+            var trip = service.GetById(tripId, User.Id);
+
+            return View(trip);
+        }
     }
 }
