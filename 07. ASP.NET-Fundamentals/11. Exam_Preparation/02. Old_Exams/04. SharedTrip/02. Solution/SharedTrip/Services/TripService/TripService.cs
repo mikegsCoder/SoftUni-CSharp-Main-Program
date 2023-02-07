@@ -90,5 +90,32 @@ namespace SharedTrip.Services.TripService
 
             return errors;
         }
+
+        public TripViewModel GetById(string tripId, string userId)
+        {
+            var trip = repository.All<Trip>()
+                .Where(t => t.Id == tripId)
+                .Select(t => new TripViewModel()
+                {
+                    Id = t.Id,
+                    StartPoint = t.StartPoint,
+                    EndPoint = t.EndPoint,
+                    DepartureTime = t.DepartureTime.ToString("dd.MM.yyyy HH:mm"),
+                    Seats = t.Seats,
+                    Description = t.Description,
+                })
+                .FirstOrDefault();
+
+            var existingUserTrip = repository.All<UserTrip>()
+               .Where(ut => ut.UserId == userId && ut.TripId == tripId)
+               .FirstOrDefault();
+
+            if (existingUserTrip != null)
+            {
+                trip.IsJoined = true;
+            }
+
+            return trip;
+        }
     }
 }
