@@ -75,6 +75,7 @@
 
   <ItemGroup>
     <None Remove="Views\Trips\Add.cshtml" />
+    <None Remove="Views\Trips\Details.cshtml" />
     <None Remove="Views\Users\Register.cshtml" />
   </ItemGroup>
 
