@@ -1,10 +1,10 @@
-﻿using SharedTrip.Data.Common;
-using SharedTrip.Data.Models;
-using SharedTrip.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using SharedTrip.Data.Common;
+using SharedTrip.Data.Models;
+using SharedTrip.ViewModels;
 
 namespace SharedTrip.Services.TripService
 {
