@@ -117,5 +117,44 @@ namespace SharedTrip.Services.TripService
 
             return trip;
         }
+
+        public ICollection<string> AddUserToTrip(string tripId, string userId)
+        {
+            var errors = new List<string>();
+
+            var user = repository.All<User>()
+                .FirstOrDefault(u => u.Id == userId);
+
+            var trip = repository.All<Trip>()
+                .FirstOrDefault(t => t.Id == tripId);
+
+            if (user == null || trip == null)
+            {
+                errors.Add("User or trip not found");
+
+                return errors;
+            }
+
+            var userTrip = new UserTrip()
+            {
+                UserId = userId,
+                TripId = tripId,
+                User = user,
+                Trip = trip
+            };
+
+            user.UserTrips.Add(userTrip);
+
+            try
+            {
+                repository.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                errors.Add(ex.Message);
+            }
+
+            return errors;
+        }
     }
 }

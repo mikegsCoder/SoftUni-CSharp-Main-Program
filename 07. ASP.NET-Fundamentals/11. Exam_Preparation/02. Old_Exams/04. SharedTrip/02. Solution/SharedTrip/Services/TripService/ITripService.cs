@@ -14,5 +14,7 @@ namespace SharedTrip.Services.TripService
         ICollection<string> Create(TripInputViewModel model);
 
         TripViewModel GetById(string tripId, string userId);
+
+        ICollection<string> AddUserToTrip(string tripId, string userId);
     }
 }
