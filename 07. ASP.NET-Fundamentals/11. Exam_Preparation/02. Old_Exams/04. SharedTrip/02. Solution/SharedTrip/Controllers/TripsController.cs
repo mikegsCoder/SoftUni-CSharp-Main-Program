@@ -58,5 +58,23 @@ namespace SharedTrip.Controllers
 
             return View(trip);
         }
+
+        [Authorize]
+        public HttpResponse AddUserToTrip(string tripId)
+        {
+            var errors = service.AddUserToTrip(tripId, User.Id);
+
+            if (errors.Any())
+            {
+                AllErrorsViewModel errorModels = new AllErrorsViewModel()
+                {
+                    AllErrorsViewModels = errors.Select(e => new ErrorViewModel(e))
+                };
+
+                return View(errorModels, "/Error");
+            }
+
+            return Redirect("/");
+        }
     }
 }
