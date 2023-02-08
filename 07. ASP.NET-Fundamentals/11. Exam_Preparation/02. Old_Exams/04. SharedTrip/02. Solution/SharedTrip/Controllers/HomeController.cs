@@ -7,6 +7,11 @@
     {
         public HttpResponse Index()
         {
+            if (User.IsAuthenticated)
+            {
+                return this.Redirect("/Trips/All");
+            }
+
             return this.View();
         }
     }
