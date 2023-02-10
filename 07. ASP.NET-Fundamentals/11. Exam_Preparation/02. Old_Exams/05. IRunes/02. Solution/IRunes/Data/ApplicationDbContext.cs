@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using IRunes.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace IRunes.Data
 {
@@ -6,12 +7,18 @@ namespace IRunes.Data
     {
 
         public ApplicationDbContext()
-        { 
+        {
         }
         public ApplicationDbContext(DbContextOptions db)
             : base(db)
-        { 
+        {
         }
+
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<Track> Tracks { get; set; }
+
+        public DbSet<Album> Albums { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
