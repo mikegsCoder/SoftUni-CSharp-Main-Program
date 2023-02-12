@@ -15,5 +15,15 @@ namespace IRunes.Controllers
 
             return View();
         }
+
+        public HttpResponse Register()
+        {
+            if (IsUserSignedIn())
+            {
+                return Redirect("/");
+            }
+
+            return View();
+        }
     }
 }
