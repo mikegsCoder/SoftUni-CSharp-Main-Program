@@ -24,8 +24,25 @@ namespace IRunes.Services.Users
                 Email = register.Email,
                 Password = ComputeHash(register.Password)
             };
-            this.db.Users.Add(user);
-            this.db.SaveChanges();
+
+            db.Users.Add(user);
+            db.SaveChanges();
+        }
+
+        private string ComputeHash(string password)
+        {
+            var bytes = Encoding.UTF8.GetBytes(password);
+
+            using (var hash = SHA512.Create())
+            {
+                var hashedInputBytes = hash.ComputeHash(bytes);
+                var hashedInputStringBuilder = new StringBuilder(128);
+
+                foreach (var b in hashedInputBytes)
+                    hashedInputStringBuilder.Append(b.ToString("X2"));
+
+                return hashedInputStringBuilder.ToString();
+            }
         }
     }
 }
