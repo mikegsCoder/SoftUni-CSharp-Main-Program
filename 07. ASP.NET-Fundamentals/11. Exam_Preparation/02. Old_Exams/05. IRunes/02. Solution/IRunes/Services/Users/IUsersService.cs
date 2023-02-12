@@ -1,4 +1,6 @@
-﻿namespace IRunes.Services.Users
+﻿using IRunes.ViewModels.Users;
+
+namespace IRunes.Services.Users
 {
     public interface IUsersService
     {
