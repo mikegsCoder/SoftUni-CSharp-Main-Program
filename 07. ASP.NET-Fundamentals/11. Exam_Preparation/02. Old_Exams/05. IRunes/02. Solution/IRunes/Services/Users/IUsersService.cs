@@ -7,5 +7,7 @@ namespace IRunes.Services.Users
         void Create(RegisterInputModel register);
 
         bool IsUsernameAvailable(RegisterInputModel register);
+
+        bool IsEmailAvailable(RegisterInputModel registerl);
     }
 }
