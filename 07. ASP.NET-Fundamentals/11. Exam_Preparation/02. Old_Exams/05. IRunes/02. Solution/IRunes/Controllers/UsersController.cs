@@ -1,4 +1,5 @@
-﻿using IRunes.ViewModels.Users;
+﻿using IRunes.Services.Users;
+using IRunes.ViewModels.Users;
 using SUS.HTTP;
 using SUS.MvcFramework;
 using System.ComponentModel.DataAnnotations;
@@ -7,6 +8,13 @@ namespace IRunes.Controllers
 {
     public class UsersController : Controller
     {
+        private readonly IUsersService usersService;
+
+        public UsersController(IUsersService usersService)
+        {
+            usersService = usersService;
+        }
+
         public HttpResponse Login()
         {
             if (IsUserSignedIn())
