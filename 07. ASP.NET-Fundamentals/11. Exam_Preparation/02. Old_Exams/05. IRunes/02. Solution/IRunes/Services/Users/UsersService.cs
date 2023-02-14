@@ -11,9 +11,9 @@ namespace IRunes.Services.Users
     {
         private readonly ApplicationDbContext db;
 
-        public UsersService(ApplicationDbContext db)
+        public UsersService(ApplicationDbContext _db)
         {
-            this.db = db;
+            this.db = _db;
         }
 
         public void Create(RegisterInputModel register)
@@ -26,6 +26,7 @@ namespace IRunes.Services.Users
             };
 
             db.Users.Add(user);
+
             db.SaveChanges();
         }
 
@@ -37,6 +38,15 @@ namespace IRunes.Services.Users
         public bool IsEmailAvailable(RegisterInputModel register)
         {
             return !db.Users.Any(x => x.Email == register.Email);
+        }
+
+        public string GetUserId(LoginInputModel login)
+        {
+            var hashPassword = ComputeHash(login.Password);
+
+            var user = db.Users.FirstOrDefault(x => x.Username == login.Username && x.Password == hashPassword);
+
+            return user?.Id;
         }
 
         private string ComputeHash(string password)

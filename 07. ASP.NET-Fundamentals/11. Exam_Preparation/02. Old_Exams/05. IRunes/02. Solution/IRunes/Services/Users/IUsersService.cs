@@ -9,5 +9,7 @@ namespace IRunes.Services.Users
         bool IsUsernameAvailable(RegisterInputModel register);
 
         bool IsEmailAvailable(RegisterInputModel registerl);
+
+        string GetUserId(LoginInputModel login);
     }
 }
