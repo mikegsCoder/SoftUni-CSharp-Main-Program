@@ -25,6 +25,26 @@ namespace IRunes.Controllers
             return View();
         }
 
+        [HttpPost]
+        public HttpResponse Login(LoginInputModel login)
+        {
+            if (IsUserSignedIn())
+            {
+                return Redirect("/");
+            }
+
+            var userId = usersService.GetUserId(login);
+
+            if (userId == null)
+            {
+                return Redirect("/Users/Login");
+            }
+
+            SignIn(userId);
+
+            return Redirect("/");
+        }
+
         public HttpResponse Register()
         {
             if (IsUserSignedIn())
