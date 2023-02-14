@@ -10,9 +10,9 @@ namespace IRunes.Controllers
     {
         private readonly IUsersService usersService;
 
-        public UsersController(IUsersService usersService)
+        public UsersController(IUsersService _usersService)
         {
-            usersService = usersService;
+            usersService = _usersService;
         }
 
         public HttpResponse Login()
@@ -63,12 +63,12 @@ namespace IRunes.Controllers
                 return Error("Password should be between 6 and 20 characters");
             }
 
-            if (!this.usersService.IsUsernameAvailable(register))
+            if (!usersService.IsUsernameAvailable(register))
             {
                 return Error("Username not available");
             }
 
-            if (!this.usersService.IsEmailAvailable(register))
+            if (!usersService.IsEmailAvailable(register))
             {
                 return Error("Email not available");
             }
@@ -78,7 +78,7 @@ namespace IRunes.Controllers
                 return Error("Passwords do not match");
             }
 
-            this.usersService.Create(register);
+            usersService.Create(register);
 
             return Redirect("/Users/Login");
         }
