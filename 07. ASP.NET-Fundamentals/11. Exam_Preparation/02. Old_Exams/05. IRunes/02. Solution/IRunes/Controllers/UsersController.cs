@@ -102,5 +102,15 @@ namespace IRunes.Controllers
 
             return Redirect("/Users/Login");
         }
+
+        public HttpResponse Logout()
+        {
+            if (IsUserSignedIn())
+            {
+                SignOut();
+            }
+
+            return Redirect("/");
+        }
     }
 }
