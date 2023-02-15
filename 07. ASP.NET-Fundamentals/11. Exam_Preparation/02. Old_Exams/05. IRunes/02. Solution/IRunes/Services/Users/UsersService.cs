@@ -1,5 +1,6 @@
 ﻿using IRunes.Data;
 using IRunes.Data.Models;
+using IRunes.ViewModels.Home;
 using IRunes.ViewModels.Users;
 using System.Linq;
 using System.Security.Cryptography;

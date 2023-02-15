@@ -1,4 +1,5 @@
-﻿using IRunes.ViewModels.Users;
+﻿using IRunes.ViewModels.Home;
+using IRunes.ViewModels.Users;
 
 namespace IRunes.Services.Users
 {
