@@ -49,6 +49,21 @@ namespace IRunes.Services.Users
             return user?.Id;
         }
 
+        public HomeViewModel GetHomeViewModel(string userId)
+        {
+            var username = this.db.Users
+                .Where(x => x.Id == userId)
+                .Select(x => x.Username)
+                .FirstOrDefault();
+
+            var viewModel = new HomeViewModel
+            {
+                Username = username
+            };
+
+            return viewModel;
+        }
+
         private string ComputeHash(string password)
         {
             var bytes = Encoding.UTF8.GetBytes(password);

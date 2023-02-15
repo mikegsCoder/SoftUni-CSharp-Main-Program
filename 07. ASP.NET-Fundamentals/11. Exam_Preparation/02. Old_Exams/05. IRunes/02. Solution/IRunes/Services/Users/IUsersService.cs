@@ -11,5 +11,7 @@ namespace IRunes.Services.Users
         bool IsEmailAvailable(RegisterInputModel registerl);
 
         string GetUserId(LoginInputModel login);
+
+        HomeViewModel GetHomeViewModel(string userId);
     }
 }
