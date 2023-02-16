@@ -1,4 +1,6 @@
-﻿namespace IRunes.Services.Albums
+﻿using IRunes.ViewModels.Albums;
+
+namespace IRunes.Services.Albums
 {
     public interface IAlbumsService
     {
