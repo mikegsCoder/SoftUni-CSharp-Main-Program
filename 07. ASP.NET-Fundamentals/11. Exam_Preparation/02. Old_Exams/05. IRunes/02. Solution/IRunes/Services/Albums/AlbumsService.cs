@@ -1,4 +1,5 @@
 ﻿using IRunes.Data;
+using IRunes.ViewModels.Albums;
 using System.Linq;
 
 namespace IRunes.Services.Albums
