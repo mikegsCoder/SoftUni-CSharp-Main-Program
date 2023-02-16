@@ -4,6 +4,7 @@ using SUS.MvcFramework;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using IRunes.Services.Users;
+using IRunes.Services.Albums;
 
 namespace IRunes
 {
@@ -12,6 +13,7 @@ namespace IRunes
         public void ConfigureServices(IServiceCollection serviceCollection)
         {
             serviceCollection.Add<IUsersService, UsersService>();
+            serviceCollection.Add<IAlbumsService, AlbumsService>();
         }
 
         public void Configure(List<Route> routeTable)
