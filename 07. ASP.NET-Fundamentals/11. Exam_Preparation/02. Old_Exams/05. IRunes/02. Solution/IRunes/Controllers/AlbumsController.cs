@@ -24,5 +24,15 @@ namespace IRunes.Controllers
 
             return View(viewModel);
         }
+
+        public HttpResponse Create()
+        {
+            if (!IsUserSignedIn())
+            {
+                return Redirect("/");
+            }
+
+            return View();
+        }
     }
 }
