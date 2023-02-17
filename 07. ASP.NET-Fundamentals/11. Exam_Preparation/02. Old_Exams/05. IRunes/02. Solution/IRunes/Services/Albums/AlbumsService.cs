@@ -1,4 +1,5 @@
 ﻿using IRunes.Data;
+using IRunes.Data.Models;
 using IRunes.ViewModels.Albums;
 using System.Linq;
 
@@ -26,6 +27,19 @@ namespace IRunes.Services.Albums
             };
 
             return viewModel;
+        }
+
+        public void CreateAlbum(AlbumCreateInputModel inputModel)
+        {
+            var album = new Album
+            {
+                Cover = inputModel.Cover,
+                Name = inputModel.Name
+            };
+
+            db.Albums.Add(album);
+
+            db.SaveChanges();
         }
     }
 }
