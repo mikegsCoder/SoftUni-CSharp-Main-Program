@@ -41,5 +41,24 @@ namespace IRunes.Services.Albums
 
             db.SaveChanges();
         }
+
+        public AlbumDetailsViewModel GetAlbumDetails(string albumId)
+        {
+            var tracks = db.Tracks
+                .Where(x => x.AlbumId == albumId)
+                .ToList();
+
+            var viewModel = db.Albums
+                .Select(x => new AlbumDetailsViewModel
+                {
+                    Name = x.Name,
+                    Cover = x.Cover,
+                    Id = x.Id,
+                    Price = (x.Tracks.Sum(x => x.Price) * 0.87m).ToString("f2"),
+                    Tracks = tracks
+                }).FirstOrDefault();
+
+            return viewModel;
+        }
     }
 }

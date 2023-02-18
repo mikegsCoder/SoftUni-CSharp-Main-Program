@@ -7,5 +7,7 @@ namespace IRunes.Services.Albums
         AllAlbumsViewModel GetAllAlbums();
 
         void CreateAlbum(AlbumCreateInputModel inputModel);
+
+        AlbumDetailsViewModel GetAlbumDetails(string albumId);
     }
 }
