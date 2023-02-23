@@ -8,9 +8,9 @@ namespace IRunes.Controllers
     {
         private readonly ITracksService tracksService;
 
-        public TracksController(ITracksService tracksService)
+        public TracksController(ITracksService _tracksService)
         {
-            this.tracksService = tracksService;
+            tracksService = _tracksService;
         }
 
         public HttpResponse Create(string albumId)
