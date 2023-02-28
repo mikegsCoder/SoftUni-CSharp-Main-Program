@@ -24,5 +24,35 @@ namespace IRunes.Controllers
 
             return View(viewModel);
         }
+
+        [HttpPost]
+        public HttpResponse Create(string albumId, CreateTrackInputModel inputModel)
+        {
+            if (!IsUserSignedIn())
+            {
+                return Redirect("/");
+            }
+
+            if (string.IsNullOrEmpty(inputModel.Name)
+               || inputModel.Name.Length < 4
+               || inputModel.Name.Length > 20)
+            {
+                return Redirect($"/Tracks/Create?albumId={albumId}");
+            }
+
+            if (string.IsNullOrEmpty(inputModel.Link))
+            {
+                return Redirect($"/Tracks/Create?albumId={albumId}");
+            }
+
+            if (inputModel.Price < 0)
+            {
+                return Redirect($"/Tracks/Create?albumId={albumId}");
+            }
+
+            tracksService.CreateTrack(albumId, inputModel);
+
+            return Redirect($"/Albums/Details?id={albumId}");
+        }
     }
 }
