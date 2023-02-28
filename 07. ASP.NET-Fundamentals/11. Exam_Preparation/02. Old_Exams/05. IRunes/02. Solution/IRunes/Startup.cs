@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using IRunes.Services.Users;
 using IRunes.Services.Albums;
+using IRunes.Services.Tracks;
 
 namespace IRunes
 {
@@ -14,6 +15,7 @@ namespace IRunes
         {
             serviceCollection.Add<IUsersService, UsersService>();
             serviceCollection.Add<IAlbumsService, AlbumsService>();
+            serviceCollection.Add<ITracksService, TracksService>();
         }
 
         public void Configure(List<Route> routeTable)
