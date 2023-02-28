@@ -24,5 +24,19 @@ namespace IRunes.Services.Tracks
 
             return viewModel;
         }
+
+        public void CreateTrack(string albumId, CreateTrackInputModel inputModel)
+        {
+            var track = new Track
+            {
+                Name = inputModel.Name,
+                Link = inputModel.Link,
+                Price = inputModel.Price,
+                AlbumId = albumId
+            };
+
+            db.Tracks.Add(track);
+            db.SaveChanges();
+        }
     }
 }
