@@ -38,5 +38,20 @@ namespace IRunes.Services.Tracks
             db.Tracks.Add(track);
             db.SaveChanges();
         }
+
+        public TrackDetailsViewModel GetTrackDetails(string albumId, string trackId)
+        {
+            var viewModel = db.Tracks
+                .Where(x => x.Id == trackId)
+                .Select(x => new TrackDetailsViewModel
+                {
+                    Name = x.Name,
+                    Price = x.Price.ToString("f2"),
+                    Link = x.Link,
+                    AlbumId = albumId
+                }).FirstOrDefault();
+
+            return viewModel;
+        }
     }
 }

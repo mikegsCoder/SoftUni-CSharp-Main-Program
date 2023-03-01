@@ -7,5 +7,7 @@ namespace IRunes.Services.Tracks
         CreateTrackViewModel GetTrackViewModel(string albumId);
 
         void CreateTrack(string albumId, CreateTrackInputModel inputModel);
+
+        TrackDetailsViewModel GetTrackDetails(string albumId, string trackId);
     }
 }
