@@ -55,5 +55,17 @@ namespace IRunes.Controllers
 
             return Redirect($"/Albums/Details?id={albumId}");
         }
+
+        public HttpResponse Details(string albumId, string trackId)
+        {
+            if (!IsUserSignedIn())
+            {
+                Redirect("/");
+            }
+
+            var viewModel = tracksService.GetTrackDetails(albumId, trackId);
+
+            return View(viewModel);
+        }
     }
 }
