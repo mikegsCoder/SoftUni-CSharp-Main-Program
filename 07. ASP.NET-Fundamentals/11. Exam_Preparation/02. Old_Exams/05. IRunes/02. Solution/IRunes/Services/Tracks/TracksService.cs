@@ -1,7 +1,6 @@
 ﻿using IRunes.Data;
 using IRunes.Data.Models;
 using IRunes.ViewModels.Tracks;
-using System;
 using System.Linq;
 
 namespace IRunes.Services.Tracks
@@ -36,6 +35,7 @@ namespace IRunes.Services.Tracks
             };
 
             db.Tracks.Add(track);
+
             db.SaveChanges();
         }
 

@@ -14,7 +14,7 @@ namespace IRunes.Services.Users
 
         public UsersService(ApplicationDbContext _db)
         {
-            this.db = _db;
+            db = _db;
         }
 
         public void Create(RegisterInputModel register)
@@ -52,7 +52,7 @@ namespace IRunes.Services.Users
 
         public HomeViewModel GetHomeViewModel(string userId)
         {
-            var username = this.db.Users
+            var username = db.Users
                 .Where(x => x.Id == userId)
                 .Select(x => x.Username)
                 .FirstOrDefault();
