@@ -13,3 +13,6 @@
 - XML Processing
 - Best Practices And Architecture
 - NoSQL
+
+
+![LINQ_C#](https://github.com/mikegsCoder/mikegsCoder.github.io/blob/main/img/Common/LinqCSharp.gif?raw=true)
